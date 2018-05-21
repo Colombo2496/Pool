@@ -6,7 +6,7 @@
  * @param other
  * @return
  */
-ChangeInPoolGame ChangeInPoolGame::merge(ChangeInPoolGame &other)
+ChangeInPoolGame ChangeInPoolGame::merge(const ChangeInPoolGame &other)
 {
     if(this->empty())
         return other;

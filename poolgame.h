@@ -4,6 +4,7 @@
 #include <vector>
 #include <QPainter>
 #include <QSize>
+#include "math.h"
 
 #include "table.h"
 #include "ball.h"

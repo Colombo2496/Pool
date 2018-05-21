@@ -27,7 +27,8 @@ void Dialog::start(PoolGame *game)
 void Dialog::paintEvent(QPaintEvent *)
 {
     QPainter p(this);
-    m_game->draw(p);
+    if(m_game)
+        m_game->draw(p);
 }
 
 void Dialog::mousePressEvent(QMouseEvent *event)
@@ -55,5 +56,6 @@ Dialog::~Dialog()
 
 void Dialog::runSimulationStep()
 {
-    m_game->simulateTimeStep(timeStep);
+    if(m_game)
+        m_game->simulateTimeStep(timeStep);
 }

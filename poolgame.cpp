@@ -20,9 +20,9 @@ void PoolGame::simulateTimeStep(float timeStep)
         totalChange = totalChange.merge(m_table->ballCollision(b));
     }
     //a collision between each possible pair of balls
-    for(int i = 0; i < m_balls.size();++i)
+    for(size_t i = 0; i < m_balls.size();++i)
     {
-        for(int j = i+1;j < m_balls.size();++j)
+        for(size_t j = i+1;j < m_balls.size();++j)
         {
             if(m_balls[i]->collidesWith(m_balls[j]))
             {

@@ -3,6 +3,7 @@
 #include <QVector2D>
 #include <QJsonValue>
 #include <vector>
+#include "math.h"
 /**
  * @brief converts a value that is an object of the form {"x":float,"y":float} into a QVector2D with the appropriate values
  * @param v is the QJsonValue to convert

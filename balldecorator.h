@@ -23,7 +23,7 @@ public:
     ChangeInPoolGame changeVelocity(const QVector2D &deltaV)
     {
         ChangeInPoolGame change = m_ball->changeVelocity(deltaV);
-        for(int i = 0; i < change.m_ballsToRemove.size();++i)
+        for(size_t i = 0; i < change.m_ballsToRemove.size();++i)
         {
             if(change.m_ballsToRemove[i]==m_ball)
                 change.m_ballsToRemove[i] = this;

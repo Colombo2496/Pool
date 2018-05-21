@@ -111,7 +111,7 @@ Table *Stage2Factory::makeTable(const QJsonObject &config)
     for(int i = 0; i < pockets.size();++i)
     {
         QVector2D pos = QJsonValueToVector2D(pockets[i].toObject()["position"],nan(""),nan(""));
-        if(isnan(pos.x())||isnan(pos.y()))
+        if(std::isnan(pos.x())||std::isnan(pos.y()))
         {
             std::cout << "pocket must have both an x and y position" <<std::endl;
             continue;

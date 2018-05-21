@@ -1,6 +1,7 @@
 #ifndef STAGE2BALL_H
 #define STAGE2BALL_H
 #include <vector>
+#include <math.h>
 
 #include "ball.h"
 #include "changeinpoolgame.h"
@@ -47,7 +48,7 @@ public:
      * @brief mass get the total mass of the composite ball wich is the sum of its mass and the mass of its children
      * @return
      */
-    float mass();
+    float mass() const;
 
     /**
      * @brief draws the composite ball, if draw children is true it will also draw its children

@@ -36,7 +36,7 @@ ChangeInPoolGame CompositeBall::changeVelocity(const QVector2D &deltaV)
     return ChangeInPoolGame();
 }
 
-float CompositeBall::mass()
+float CompositeBall::mass() const
 {
     return m_mass+m_containedMass;
 }

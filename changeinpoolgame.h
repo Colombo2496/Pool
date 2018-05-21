@@ -15,11 +15,11 @@ public:
     {}
     std::vector<Ball *> m_ballsToRemove;
     std::vector<Ball *> m_ballsToAdd;
-    bool empty(){
+    bool empty() const{
         return m_ballsToRemove.empty()&&m_ballsToAdd.empty();
     }
 
-    ChangeInPoolGame merge(ChangeInPoolGame &other);
+    ChangeInPoolGame merge(const ChangeInPoolGame &other);
 };
 
 #endif // CHANGEINPOOLGAME_H

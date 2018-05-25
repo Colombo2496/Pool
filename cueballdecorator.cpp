@@ -1,4 +1,5 @@
 #include "cueballdecorator.h"
+#include <QDebug>
 CueBallDecorator::CueBallDecorator(Ball *b, Dialog *parent)
     :BallDecorator(b),clicked(false)
 {
@@ -6,10 +7,14 @@ CueBallDecorator::CueBallDecorator(Ball *b, Dialog *parent)
     connect(parent,&Dialog::mousePressed,this,&CueBallDecorator::mousePressed);
     connect(parent,&Dialog::mouseMoved,this,&CueBallDecorator::mouseMoved);
     connect(parent,&Dialog::mouseReleased,this,&CueBallDecorator::mouseReleased);
+    connect(parent,&Dialog::keyPressed,this,&CueBallDecorator::keyPressed);
+    connect(parent,&Dialog::keyReleased,this,&CueBallDecorator::keyReleased);
 }
 
 void CueBallDecorator::draw(QPainter &p)
 {
+    //Check for ball velocity here. When it's zero just replace the current memento with the new one
+
     m_ball->draw(p);
     if(clicked)
         p.drawLine(mousePos.toPointF(),m_ball->position().toPointF());
@@ -42,16 +47,18 @@ void CueBallDecorator::mouseReleased(QMouseEvent *event)
     }
 }
 
-void CueBallDecorator::keyPressEvent(QKeyEvent *event)
+void CueBallDecorator::keyPressed(QKeyEvent *event)
 {
     if(m_ball->velocity() == QVector2D(0,0) && event->key() == Qt::Key_R){
-        keyPressed = true;
+        m_keyPressed = true;
     }
 }
 
-void CueBallDecorator::keyReleaseEvent(QKeyEvent *event)
+void CueBallDecorator::keyReleased(QKeyEvent *event)
 {
-    if(keyPressed){
+    if(m_keyPressed){
+        m_keyPressed = false;
         //Use the memento here!
+        qDebug() << "Use the memento";
     }
 }

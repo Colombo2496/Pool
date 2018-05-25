@@ -28,7 +28,8 @@ SOURCES += main.cpp \
     util.cpp \
     changeinpoolgame.cpp \
     cueballdecorator.cpp \
-    duplicationballdecorator.cpp
+    duplicationballdecorator.cpp \
+    originator.cpp
 
 HEADERS  += dialog.h \
     poolgame.h \
@@ -48,5 +49,8 @@ HEADERS  += dialog.h \
     pocket.h \
     balldecorator.h \
     cueballdecorator.h \
-    duplicationballdecorator.h
+    duplicationballdecorator.h \
+    memento.h \
+    originator.h \
+    caretaker.h
 

@@ -2,6 +2,7 @@
 
 #include <QPainter>
 #include <QSize>
+#include <QDebug>
 
 constexpr float fps = 60;
 constexpr float timeStep = 0.01;
@@ -48,6 +49,7 @@ void Dialog::mouseReleaseEvent(QMouseEvent *event)
 
 void Dialog::keyPressEvent(QKeyEvent *event)
 {
+//    qDebug() << "Pressed key";
     emit keyPressed(event);
 }
 

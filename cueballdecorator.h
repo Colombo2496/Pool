@@ -26,14 +26,14 @@ public slots:
     void mousePressed(QMouseEvent * event);
     void mouseMoved(QMouseEvent * event);
     void mouseReleased(QMouseEvent * event);
-    void keyPressEvent(QKeyEvent *event);
-    void keyReleaseEvent(QKeyEvent *event);
+    void keyPressed(QKeyEvent *event);
+    void keyReleased(QKeyEvent *event);
 
 private:
     QVector2D endpoint;
     QVector2D mousePos;
     bool clicked;
-    bool keyPressed;
+    bool m_keyPressed;
 };
 
 #endif // CUEBALLDECORATOR_H

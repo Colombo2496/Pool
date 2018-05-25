@@ -30,7 +30,7 @@ public:
     void restoreFromMemento(Memento* prevState);
 
 private:
-    std::vector<Ball *> m_state;
+    std::vector<Ball *> m_state = {};
 };
 
 #endif // ORIGINATOR_H

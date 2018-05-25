@@ -8,6 +8,8 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <QKeyEvent>
+#include "caretaker.h"
+#include "originator.h"
 
 /**
  * @brief The CueBallDecorator class is the decorator that turns a ball into a cue ball
@@ -34,6 +36,7 @@ private:
     QVector2D mousePos;
     bool clicked;
     bool m_keyPressed;
+    Caretaker savedData;
 };
 
 #endif // CUEBALLDECORATOR_H

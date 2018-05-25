@@ -17,7 +17,7 @@ class Memento
      * @brief Memento - Create a new Memento constructor with new param
      * @param newState
      */
-    Memento(std::vector<Ball *> newState);
+    Memento(std::vector<Ball *> newState): state(newState){}
 
     ~Memento(){}
 
@@ -25,10 +25,10 @@ class Memento
      * @brief getState - Get the current Memento
      * @return
      */
-    std::vector<Ball *> getState();
+    std::vector<Ball *> getState(){return state;}
 
     friend class Originator;
-    std::vector<Ball *> state;
+    std::vector<Ball *> state = {};
 };
 
 #endif // MEMENTO_H

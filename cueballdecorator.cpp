@@ -14,7 +14,9 @@ CueBallDecorator::CueBallDecorator(Ball *b, Dialog *parent)
 void CueBallDecorator::draw(QPainter &p)
 {
     //Check for ball velocity here. When it's zero just replace the current memento with the new one
-
+//    if(m_ball->velocity() == QVector2D(0,0)){
+//        savedData
+//    }
     m_ball->draw(p);
     if(clicked)
         p.drawLine(mousePos.toPointF(),m_ball->position().toPointF());

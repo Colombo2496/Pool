@@ -52,10 +52,24 @@ public:
      */
     void mouseReleaseEvent(QMouseEvent *event);
 
+    /**
+     * @brief keyPressEvent - emits signal when Keyboard key is pressed
+     * @param event
+     */
+    void keyPressEvent(QKeyEvent *event);
+
+    /**
+     * @brief keyReleaseEvent - emits signal when Keyboard key is released
+     * @param event
+     */
+    void keyReleaseEvent(QKeyEvent *event);
+
 signals:
     void mousePressed(QMouseEvent * event);
     void mouseMoved(QMouseEvent * event);
     void mouseReleased(QMouseEvent * event);
+    void keyPressed(QKeyEvent *event);
+    void keyReleased(QKeyEvent *event);
 
 public slots:
     void runSimulationStep();

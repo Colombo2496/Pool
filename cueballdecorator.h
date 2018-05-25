@@ -7,6 +7,7 @@
 #include <QWidget>
 #include <QPainter>
 #include <QMouseEvent>
+#include <QKeyEvent>
 
 /**
  * @brief The CueBallDecorator class is the decorator that turns a ball into a cue ball
@@ -25,11 +26,14 @@ public slots:
     void mousePressed(QMouseEvent * event);
     void mouseMoved(QMouseEvent * event);
     void mouseReleased(QMouseEvent * event);
+    void keyPressEvent(QKeyEvent *event);
+    void keyReleaseEvent(QKeyEvent *event);
 
 private:
     QVector2D endpoint;
     QVector2D mousePos;
     bool clicked;
+    bool keyPressed;
 };
 
 #endif // CUEBALLDECORATOR_H

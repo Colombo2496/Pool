@@ -41,3 +41,17 @@ void CueBallDecorator::mouseReleased(QMouseEvent *event)
         setVelocity(4*(m_ball->position()-mousePos));
     }
 }
+
+void CueBallDecorator::keyPressEvent(QKeyEvent *event)
+{
+    if(m_ball->velocity() == QVector2D(0,0) && event->key() == Qt::Key_R){
+        keyPressed = true;
+    }
+}
+
+void CueBallDecorator::keyReleaseEvent(QKeyEvent *event)
+{
+    if(keyPressed){
+        //Use the memento here!
+    }
+}

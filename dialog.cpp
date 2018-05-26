@@ -3,6 +3,7 @@
 #include <QPainter>
 #include <QSize>
 #include <QDebug>
+#include "cueballdecorator.h"
 
 constexpr float fps = 60;
 constexpr float timeStep = 0.01;
@@ -10,8 +11,9 @@ constexpr float timeStep = 0.01;
 Dialog::Dialog(QWidget *parent)
     :QDialog(parent),m_game(nullptr),m_framerateTimer(new QTimer()),m_timestepTimer(new QTimer())
 {
-
-
+//    CueBallDecorator* cueBall;
+//    connect(cueBall,&CueBallDecorator::keyReleased,this,&Dialog::restoreMove);
+//      connect(&a)
 }
 
 void Dialog::start(PoolGame *game)
@@ -49,13 +51,34 @@ void Dialog::mouseReleaseEvent(QMouseEvent *event)
 
 void Dialog::keyPressEvent(QKeyEvent *event)
 {
-//    qDebug() << "Pressed key";
-    emit keyPressed(event);
+    if(event->key() == Qt::Key_R){
+        for(Ball* b : m_game->getBalls()){
+            QString colour = b->colour().name();
+            if(b->colour() == Qt::white &&
+                    b->velocity() == QVector2D(0,0)){
+                        m_keyPressed = true;
+                        break; // To stop iterating
+            }
+        }
+
+    }
+//    emit keyPressed(event);
 }
 
 void Dialog::keyReleaseEvent(QKeyEvent *event)
 {
-    emit keyReleased(event);
+    if(m_keyPressed){
+        m_keyPressed = false;
+        restoreMove();
+    }
+//    emit keyReleased(event);
+}
+
+void Dialog::restoreMove()
+{
+    m_game->undoMove();
+    qDebug() << "finished move";
+//    runSimulationStep();
 }
 
 

@@ -1,7 +1,7 @@
 #ifndef MEMENTO_H
 #define MEMENTO_H
 //#include "changeinpoolgame.h"
-#include "originator.h"
+//#include "originator.h"
 #include "ball.h"
 
 /**
@@ -28,7 +28,7 @@ class Memento
     std::vector<Ball *> getState(){return state;}
 
     friend class Originator;
-    std::vector<Ball *> state = {};
+    std::vector<Ball *> state;
 };
 
 #endif // MEMENTO_H

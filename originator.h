@@ -29,6 +29,8 @@ public:
      */
     void restoreFromMemento(Memento* prevState);
 
+    std::vector<Ball *> getState()const { return m_state;}
+
 private:
     std::vector<Ball *> m_state = {};
 };

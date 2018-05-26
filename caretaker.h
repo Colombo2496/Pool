@@ -8,7 +8,7 @@
 class Caretaker
 {
 public:
-    ~Caretaker(){delete this->SavedState;}
+    ~Caretaker(){/*delete this->SavedState;*/}
     /**
      * @brief update - the current savedState of the ball Positions
      * @param m

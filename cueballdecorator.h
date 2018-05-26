@@ -31,6 +31,7 @@ public slots:
     void keyPressed(QKeyEvent *event);
     void keyReleased(QKeyEvent *event);
 
+
 private:
     QVector2D endpoint;
     QVector2D mousePos;

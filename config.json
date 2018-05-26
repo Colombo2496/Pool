@@ -17,7 +17,7 @@
 },
 "balls" : [
  {"position":{"x":50,"y":50},"velocity":{"x":50,"y":500},"mass":1},
- {"colour":"red","position":{"x":150,"y":60},"mass":1,"radius":10},
+ {"colour":"purple","position":{"x":150,"y":60},"mass":1,"radius":10},
  {"colour":"blue","position":{"x":150,"y":40},"velocity":{"x":-100,"y":0},"radius":10},
  {"colour":"yellow","position":{"x":250,"y":70},"mass":1,"radius":21,"strength":1e6,"velocity":{"x":-100,"y":-100},
 	 "balls":[

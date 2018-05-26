@@ -60,7 +60,9 @@ void CueBallDecorator::keyReleased(QKeyEvent *event)
 {
     if(m_keyPressed){
         m_keyPressed = false;
-        //Use the memento here!
+//        //Use the memento here!
+//        emit mementoTime();
         qDebug() << "Use the memento";
     }
+
 }

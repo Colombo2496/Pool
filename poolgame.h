@@ -11,6 +11,9 @@
 
 #include "changeinpoolgame.h"
 
+#include "caretaker.h"
+#include "originator.h"
+
 /**
  * @brief The PoolGame class runs the pool game, it is in charge of the physics of the pool game as well as
  * drawing the game
@@ -25,15 +28,30 @@ public:
      */
     PoolGame(Table * m_table,std::vector<Ball*> balls)
         :m_table(m_table),m_balls(balls)
-    {}
+    {
+        caretaker = new Caretaker();
+        originator = new Originator();
+        //setting up the original ones
+        originator->setState(m_balls);
+        caretaker->update(originator->saveToMemento());
+    }
 
     ~PoolGame();
+
+    std::vector<Ball *> getBalls() const{
+        return m_balls;
+    }
 
     /**
      * @brief simulate one timestep of the game
      * @param timeStep is the period of time that this timestep is simulating
      */
     void simulateTimeStep(float timeStep);
+
+    /**
+     * @brief redoMove - Activated when the player decides to undo the last play
+     */
+    void undoMove();
 
     /**
      * @brief draws all elements of the game, table and balls in that order
@@ -59,6 +77,9 @@ private:
 
     Table * m_table;
     std::vector<Ball*> m_balls;
+    Caretaker* caretaker;
+    Originator* originator;
+    QVector2D prevPos;
 };
 
 #endif // POOLGAME_H

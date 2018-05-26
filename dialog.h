@@ -64,6 +64,11 @@ public:
      */
     void keyReleaseEvent(QKeyEvent *event);
 
+    /**
+     * @brief restoreMove - Will activate the memento in m_game
+     */
+    void restoreMove();
+
 signals:
     void mousePressed(QMouseEvent * event);
     void mouseMoved(QMouseEvent * event);
@@ -73,10 +78,12 @@ signals:
 
 public slots:
     void runSimulationStep();
+
 private:
     PoolGame * m_game;
     QTimer * m_framerateTimer;
     QTimer * m_timestepTimer;
+    bool m_keyPressed;
 };
 
 #endif // DIALOG_H

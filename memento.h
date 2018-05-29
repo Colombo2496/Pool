@@ -1,8 +1,7 @@
 #ifndef MEMENTO_H
 #define MEMENTO_H
-//#include "changeinpoolgame.h"
-//#include "originator.h"
 #include "ball.h"
+#include "stage2ball.h"
 
 /**
  * @brief The Memento class

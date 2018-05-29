@@ -5,11 +5,11 @@ void Originator::setState(std::vector<Ball *> state)
 {
 
     for(Ball *b : state){
-            Stage2Ball *newBall = new Stage2Ball;
+            SimpleStage2Ball *newBall = new SimpleStage2Ball;
         newBall->setColour(b->colour());
         newBall->setPosition(b->position());
         newBall->setRadius(b->radius());
-        newBall->setStrength(INFINITY);
+        newBall->setStrength(100);
         newBall->setVelocity(b->velocity());
 //        newBall.setColour(b->colour());
 //        newBall.setMass(b->mass());

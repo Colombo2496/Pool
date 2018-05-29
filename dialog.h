@@ -52,6 +52,18 @@ public:
      */
     void mouseReleaseEvent(QMouseEvent *event);
 
+    /**
+     * @brief keyPressEvent will do a differnt action depending on the key pressed
+     * @param event
+     */
+    void keyPressEvent(QKeyEvent *event);
+
+    /**
+     * @brief keyReleaseEvent - run differnt action depending on key pressed
+     * @param event
+     */
+    void keyReleaseEvent(QKeyEvent *event);
+
 signals:
     void mousePressed(QMouseEvent * event);
     void mouseMoved(QMouseEvent * event);

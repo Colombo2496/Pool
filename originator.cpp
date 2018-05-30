@@ -3,7 +3,8 @@
 
 void Originator::setState(std::vector<Ball *> state)
 {
-
+    m_velocity.clear();
+    m_position.clear();
     for(Ball *b : state){
 
           QVector2D velocity = QVector2D(b->velocity().x(),b->velocity().y());

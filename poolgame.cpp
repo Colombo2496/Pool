@@ -20,7 +20,6 @@ void PoolGame::simulateTimeStep(float timeStep)
     //collisions of balls with the edge of the table
     for(Ball * b: m_balls)
     {
-
         totalChange = totalChange.merge(m_table->ballCollision(b));
     }
     //a collision between each possible pair of balls
@@ -57,15 +56,21 @@ void PoolGame::simulateTimeStep(float timeStep)
         if(b->velocity().length()<5)
             b->setVelocity(QVector2D(0,0));
 
-        //Found the cueball //Will do it every time cueball is stoppped
+        //Applying Memento
+        //Found the cueball. Will do it every time cueball is stoppped
         if(b->colour() == Qt::white && b->velocity() == QVector2D(0,0)){
+//            originator->setState(m_balls);
+//                            caretaker->update(originator->saveToMemento());
+            qDebug()<< "inside the cue ball stationary place";
             if(prevPos.isNull()){
                 prevPos = b->position();
             }else if(prevPos != b->position()){
+                qDebug() << "taking a snapshot";
                 prevPos = b->position();
-//                originator->setState(m_balls);
-//                caretaker->update(originator->saveToMemento());
+                originator->setState(m_balls);
+                caretaker->update(originator->saveToMemento());
             }
+//            prevPos = b->position();
         }
     }
 

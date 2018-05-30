@@ -58,20 +58,20 @@ void PoolGame::simulateTimeStep(float timeStep)
 
         //Applying Memento
         //Found the cueball. Will do it every time cueball is stoppped
-        if(b->colour() == Qt::white && b->velocity() == QVector2D(0,0)){
-//            originator->setState(m_balls);
-//                            caretaker->update(originator->saveToMemento());
-            qDebug()<< "inside the cue ball stationary place";
-            if(prevPos.isNull()){
-                prevPos = b->position();
-            }else if(prevPos != b->position()){
-                qDebug() << "taking a snapshot";
-                prevPos = b->position();
-                originator->setState(m_balls);
-                caretaker->update(originator->saveToMemento());
-            }
-//            prevPos = b->position();
-        }
+//        if(b->colour() == Qt::white && b->velocity() == QVector2D(0,0)){
+////            originator->setState(m_balls);
+////                            caretaker->update(originator->saveToMemento());
+//            qDebug()<< "inside the cue ball stationary place";
+//            if(prevPos.isNull()){
+//                prevPos = b->position();
+//            }else if(prevPos != b->position()){
+//                qDebug() << "taking a snapshot";
+//                prevPos = b->position();
+//                originator->setState(m_balls);
+//                caretaker->update(originator->saveToMemento());
+//            }
+////            prevPos = b->position();
+//        }
     }
 
 }
@@ -88,6 +88,12 @@ void PoolGame::undoMove()
 
         index++;
     }
+}
+
+void PoolGame::takeSnapshot()
+{
+    originator->setState(m_balls);
+    caretaker->update(originator->saveToMemento());
 }
 
 void PoolGame::draw(QPainter &p)

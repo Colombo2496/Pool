@@ -54,6 +54,12 @@ public:
     void undoMove();
 
     /**
+     * @brief takeSnapshot - Updates the memento for the game.
+     * Will be activated everytime after the user releases the cueball for the shot.
+     */
+    void takeSnapshot();
+
+    /**
      * @brief draws all elements of the game, table and balls in that order
      * @param p is the painter which is used to paint the object
      */

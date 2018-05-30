@@ -29,10 +29,19 @@ public:
      */
     void restoreFromMemento(Memento* prevState);
 
-    std::vector<Ball *> getState()const { return m_state;}
+    /* Getter methods
+     */
+    /**
+     * @brief getVelocity - returns an array of the velocities stored
+     * @return
+     */
+    std::vector<QVector2D>*  getVelocity() {return &m_velocity;}
+
+    std::vector<QVector2D>* getPosition(){return &m_position;}
 
 private:
-    std::vector<Ball *> m_state = {};
+    std::vector<QVector2D> m_velocity;
+    std::vector<QVector2D> m_position;
 };
 
 #endif // ORIGINATOR_H

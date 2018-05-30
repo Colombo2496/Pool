@@ -1,7 +1,8 @@
 #ifndef MEMENTO_H
 #define MEMENTO_H
 #include "ball.h"
-#include "stage2ball.h"
+//#include "stage2ball.h"
+#include <QVector2D>
 
 /**
  * @brief The Memento class
@@ -16,18 +17,21 @@ class Memento
      * @brief Memento - Create a new Memento constructor with new param
      * @param newState
      */
-    Memento(std::vector<Ball *> newState): state(newState){}
+    Memento(std::vector<QVector2D> velocity, std::vector<QVector2D> position):
+        m_velocity(velocity),
+        m_position(position){}
 
-    ~Memento(){}
+    ~Memento(){delete this;}
 
     /**
      * @brief getState - Get the current Memento
      * @return
      */
-    std::vector<Ball *> getState(){return state;}
+    Memento* getState(){return this;}
 
     friend class Originator;
-    std::vector<Ball *> state;
+    std::vector<QVector2D> m_velocity;
+    std::vector<QVector2D> m_position;
 };
 
 #endif // MEMENTO_H

@@ -5,33 +5,27 @@ void Originator::setState(std::vector<Ball *> state)
 {
 
     for(Ball *b : state){
-            SimpleStage2Ball *newBall = new SimpleStage2Ball;
-        newBall->setColour(b->colour());
-        newBall->setPosition(b->position());
-        newBall->setRadius(b->radius());
-        newBall->setStrength(100);
-        newBall->setVelocity(b->velocity());
-//        newBall.setColour(b->colour());
-//        newBall.setMass(b->mass());
-//        newBall.setPosition(b->position());
-//        newBall.setRadius(b->radius());
-//        newBall.setStrength(INFINITY);
-//        newBall.setVelocity(b->velocity());
-        m_state.push_back(newBall);
+
+          QVector2D velocity = QVector2D(b->velocity().x(),b->velocity().y());
+          QVector2D position = QVector2D(b->position().x(),b->position().y());
+          m_velocity.push_back(velocity);
+          m_position.push_back(position);
     }
-//    m_state.push_back(&newBall);
-//    m_state = state;
 }
 
 Memento* Originator::saveToMemento()
 {
-    Memento* miniSave = new Memento(this->m_state);
+    Memento* miniSave = new Memento(this->m_velocity,this->m_position);
     return miniSave;
 }
 
 void Originator::restoreFromMemento(Memento *prevState)
 {
-    m_state = prevState->getState();
+
+    Memento* m_state = prevState->getState();
+
+    m_velocity = m_state->m_velocity;
+    m_position = m_state->m_position;
 }
 
 

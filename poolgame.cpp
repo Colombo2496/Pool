@@ -73,14 +73,15 @@ void PoolGame::simulateTimeStep(float timeStep)
 
 void PoolGame::undoMove()
 {
-    qDebug() << "in here";
-    //   m_balls = originator->restoreFromMemento(caretaker->getCurrentState());
-    m_balls.clear();
-
     originator->restoreFromMemento(caretaker->getCurrentState());
-    for(Ball * a: originator->getState())
+    int index = 0;
+    for(Ball * a: m_balls)
     {
-        m_balls.push_back(a);
+        a->setVelocity(originator->getVelocity()->at(index));
+        a->setPosition(originator->getPosition()->at(index));
+//        qDebug() << a->position() << "<-Position a | POsition orig -> " <<originator->getPosition()->at(index);
+
+        index++;
     }
 }
 

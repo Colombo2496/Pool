@@ -82,6 +82,7 @@ void PoolGame::undoMove()
     int index = 0;
     for(Ball * a: m_balls)
     {
+        //Index out of bounds if you break a composite ball
         a->setVelocity(originator->getVelocity()->at(index));
         a->setPosition(originator->getPosition()->at(index));
 //        qDebug() << a->position() << "<-Position a | POsition orig -> " <<originator->getPosition()->at(index);
@@ -92,8 +93,19 @@ void PoolGame::undoMove()
 
 void PoolGame::takeSnapshot()
 {
-    originator->setState(m_balls);
-    caretaker->update(originator->saveToMemento());
+    for(Ball *b: m_balls){
+            //Search for the cueBall
+        qDebug() << "COLOUR | VELOCITY: " << QString(b->colour().name()) << " | " << b->velocity();
+        qDebug() << "******";
+        if(b->colour() == Qt::white && b->velocity() == QVector2D(0,0)){
+                qDebug() << "taking the snapshot";
+                originator->setState(m_balls);
+                caretaker->update(originator->saveToMemento());
+                break;
+            }
+    }
+//    originator->setState(m_balls);
+//    caretaker->update(originator->saveToMemento());
 }
 
 void PoolGame::draw(QPainter &p)

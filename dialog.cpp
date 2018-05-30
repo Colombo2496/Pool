@@ -46,14 +46,16 @@ void Dialog::mouseMoveEvent(QMouseEvent *event)
 
 void Dialog::mouseReleaseEvent(QMouseEvent *event)
 {
+        m_game->takeSnapshot();
     emit mouseReleased(event);
+
 }
 
 void Dialog::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_R){
         for(Ball* b : m_game->getBalls()){
-            QString colour = b->colour().name();
+//            QString colour = b->colour().name();
             if(b->colour() == Qt::white &&
                     b->velocity() == QVector2D(0,0)){
                         m_keyPressed = true;

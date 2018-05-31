@@ -17,6 +17,7 @@ void PoolGame::simulateTimeStep(float timeStep)
     //collisions of balls with the edge of the table
     for(Ball * b: m_balls)
     {
+        //IN HERE for cue ball checking!
         totalChange = totalChange.merge(m_table->ballCollision(b));
     }
     //a collision between each possible pair of balls

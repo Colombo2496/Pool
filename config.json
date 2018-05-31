@@ -9,6 +9,8 @@
  "friction":0.5,
  "pockets": [
  {"position":{"x":5,"y":5}},
+ {"position":{"x":295,"y":5}},
+ {"position":{"x":295,"y":295}},
  {"position":{"x":595,"y":295}},
  {"position":{"x":595,"y":5}},
  {"position":{"x":5,"y":295}},

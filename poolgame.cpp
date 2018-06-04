@@ -1,5 +1,5 @@
 #include "poolgame.h"
-
+#include "random"
 
 
 PoolGame::~PoolGame()
@@ -18,7 +18,17 @@ void PoolGame::simulateTimeStep(float timeStep)
     for(Ball * b: m_balls)
     {
         //IN HERE for cue ball checking!
-        totalChange = totalChange.merge(m_table->ballCollision(b));
+        if(b->colour() == Qt::white){
+          totalChange = totalChange.merge(m_table->ballCollision(b));
+          if(!totalChange.empty()){
+              totalChange.m_ballsToRemove.clear();
+              b->setVelocity(QVector2D(rand() %100,rand() %100 ));
+              b->setPosition(QVector2D(rand() % (int)m_table->width(),rand() % (int)m_table->height()));
+          }
+        }else{
+          totalChange = totalChange.merge(m_table->ballCollision(b));
+        }
+
     }
     //a collision between each possible pair of balls
     for(size_t i = 0; i < m_balls.size();++i)

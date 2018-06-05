@@ -8,7 +8,8 @@ void Stage2Table::draw(QPainter &p)
     p.drawRect(0,0,m_width,m_height);
     p.setBrush(QBrush(Qt::black));
     //drawing the balkline
-    p.drawLine(m_width - (m_height/2),0,m_width - (m_height/2),m_height);
+//    p.drawLine(m_width - (m_height/2),0,m_width - (m_height/2),m_height); //bulkzone right
+    p.drawLine((m_height/2),0,(m_height/2),m_height);    //bulkzone left
 
     for(Pocket * pocket: m_pockets)
     {

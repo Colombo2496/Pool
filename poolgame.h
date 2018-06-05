@@ -25,7 +25,9 @@ public:
      */
     PoolGame(Table * m_table,std::vector<Ball*> balls)
         :m_table(m_table),m_balls(balls)
-    {}
+    {
+        cueBall = true;
+    }
 
     ~PoolGame();
 
@@ -47,6 +49,9 @@ public:
      */
     QSize size(){return QSize(m_table->width(),m_table->height());}
 
+    bool getCueball()const {return cueBall;};
+    void cueBallPresent(){cueBall = true;};
+
 private:
     /**
      * @brief collide two balls if they are in contact
@@ -59,6 +64,7 @@ private:
 
     Table * m_table;
     std::vector<Ball*> m_balls;
+    bool cueBall;
 };
 
 #endif // POOLGAME_H

@@ -1,6 +1,6 @@
 #include "poolgame.h"
 #include "random"
-
+#include <QDebug>
 
 PoolGame::~PoolGame()
 {
@@ -22,8 +22,15 @@ void PoolGame::simulateTimeStep(float timeStep)
           totalChange = totalChange.merge(m_table->ballCollision(b));
           if(!totalChange.empty()){
               totalChange.m_ballsToRemove.clear();
-              b->setVelocity(QVector2D(rand() %100,rand() %100 ));
-              b->setPosition(QVector2D(rand() % (int)m_table->width(),rand() % (int)m_table->height()));
+//              b->setVelocity(QVector2D(rand() %100,rand() %100 ));
+//              b->setPosition(QVector2D(rand() % (int)m_table->width(),rand() % (int)m_table->height()));
+              b->setColour(Qt::black); //so it's invisible
+              b->setVelocity(QVector2D(0,0));//So it stays still
+              cueBall = false;
+//              qDebug() << "Cue ball fell in pocket";
+              return;
+          }else{
+              cueBall = true;//still in play
           }
         }else{
           totalChange = totalChange.merge(m_table->ballCollision(b));
@@ -70,6 +77,8 @@ void PoolGame::draw(QPainter &p)
     m_table->draw(p);
     for(Ball * b: m_balls)
     {
+        if(cueBall && b->colour() == Qt::black)
+            continue;
         b->draw(p);
     }
 }

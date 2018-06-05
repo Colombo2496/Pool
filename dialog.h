@@ -51,11 +51,11 @@ public:
      * @param event
      */
     void mouseReleaseEvent(QMouseEvent *event);
-
 signals:
     void mousePressed(QMouseEvent * event);
     void mouseMoved(QMouseEvent * event);
     void mouseReleased(QMouseEvent * event);
+    void placeCueBall(QSize tableDimensions);
 
 public slots:
     void runSimulationStep();

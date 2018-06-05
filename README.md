@@ -13,7 +13,7 @@ Once they are complete/ready to run they will be merged with the master.
 
 Extension Branches: "Contains various branches"
 
-*75% COMPLETE* | resetCue Branch:
+*85% COMPLETE* | resetCue Branch:
   - If cueBall enters one of the pockets, it is automatically placed on the
   table again for taking more shots.
   - Extensions:

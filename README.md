@@ -13,14 +13,15 @@ Once they are complete/ready to run they will be merged with the master.
 
 Extension Branches: "Contains various branches"
 
-*85% COMPLETE* | resetCue Branch:
+*100% COMPLETE* | resetCue Branch:
   - If cueBall enters one of the pockets, it is automatically placed on the
   table again for taking more shots.
   - Extensions:
-    1. Place the cueBall behind the kitchen line. Click on the position that is desired
-    to drop the ball in-order to play. COMPLETE
-    2. If it's not behind the line send a box to the user to place behind the
-      line. TODO
+    1. Place the cueBall behind the kitchen line. Click on the position that
+     is desired
+    to drop the ball in-order to play.
+    2. If it's not behind the line a popup will occur instructing user
+    where to place(CLICK) the Cue Ball.
 *0% COMPLETE* | Statistics Branch:
   - Press the 's' button to pop up a statistics window.
   - **Statistics WINDOW** includes:

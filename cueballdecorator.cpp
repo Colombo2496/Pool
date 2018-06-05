@@ -1,8 +1,10 @@
 #include "cueballdecorator.h"
 #include <QDebug>
 CueBallDecorator::CueBallDecorator(Ball *b, Dialog *parent)
-    :BallDecorator(b),clicked(false),placeCue(false)
+    :BallDecorator(b),clicked(false),placeCue(false),
+      popup(QString::fromLatin1("Lets play!"),parent,Qt::SplashScreen | Qt::WindowStaysOnTopHint)
 {
+    setUpPopUp();
     //connect dialog signals to cueball slots so that this class is notified when the mouse is used
     connect(parent,&Dialog::mousePressed,this,&CueBallDecorator::mousePressed);
     connect(parent,&Dialog::mouseMoved,this,&CueBallDecorator::mouseMoved);
@@ -15,6 +17,24 @@ void CueBallDecorator::draw(QPainter &p)
     m_ball->draw(p);
     if(clicked)
         p.drawLine(mousePos.toPointF(),m_ball->position().toPointF());
+}
+
+void CueBallDecorator::showPopup(bool wrongPlacement)
+{
+    //placing it not behind the baulk line
+    if(wrongPlacement){
+        popup.setText("**To Place Cue Ball**\n"
+                      "Click inside the 'Baulk' zone.\n"
+                      "The left hand side rectangle");
+    }else{
+        popup.setText("**To Place Cue Ball**\n"
+                      "Click on the desired position in-between:\n"
+                      "1. The 'baulk' line\n "
+                      "2. The left edge of the Table");
+    }
+
+    popup.show();
+    QTimer::singleShot(5000, &popup, &QLabel::hide);
 }
 
 
@@ -50,10 +70,9 @@ void CueBallDecorator::mouseReleased(QMouseEvent *event)
             placeCue = false;
             //sets the position of the last time it was used
             setPosition(mousePos);
-            qDebug() << "Set the cue Ball"; //must be a warning box
         }else
         {
-            qDebug() << "must be inside the baulk";
+            showPopup(true);
         }
     }else if(clicked)
     {
@@ -69,5 +88,15 @@ void CueBallDecorator::placeCueBall(QSize tableDimensions)
         baulkZone = tableDimensions;
         baulkZone.setWidth((baulkZone.rheight())/2);
     }
+    showPopup(false);
+}
 
+void CueBallDecorator::setUpPopUp()
+{
+    QPalette qPalette = popup.palette();
+    qPalette.setBrush(QPalette::Background, QColor(0xff, 0xe0, 0xc0));
+    popup.setPalette(qPalette);
+    popup.setFrameStyle(QLabel::Raised | QLabel::Panel);
+    popup.setAlignment(Qt::AlignCenter);
+    popup.setFixedSize(320, 200);
 }

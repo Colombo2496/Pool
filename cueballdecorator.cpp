@@ -20,9 +20,10 @@ void CueBallDecorator::draw(QPainter &p)
 
 void CueBallDecorator::mousePressed(QMouseEvent *event)
 {
-    if(velocity().lengthSquared()<0.001 && (QVector2D(event->pos())-position()).length() < radius())
+    if(velocity().lengthSquared()<0.001 && (QVector2D(event->pos())-position()).length() < radius() && !placeCue)
     {
         clicked = true;
+        placeCue = false;
         mousePos = QVector2D(event->pos());
     }else if(placeCue){
         mousePos = QVector2D(event->pos());
@@ -43,8 +44,8 @@ void CueBallDecorator::mouseReleased(QMouseEvent *event)
 
     if(placeCue)
     {
-        if(this->mousePos.x() /*+ this->radius()*/ <= baulkZone.rwidth() &&
-                this->mousePos.y() /*+ this->radius()*/ <= baulkZone.rheight())
+        if(this->mousePos.x()<= baulkZone.rwidth() &&
+                this->mousePos.y()  <= baulkZone.rheight())
         {
             placeCue = false;
             //sets the position of the last time it was used
@@ -64,9 +65,9 @@ void CueBallDecorator::mouseReleased(QMouseEvent *event)
 void CueBallDecorator::placeCueBall(QSize tableDimensions)
 {
     placeCue = true;
-    baulkZone = tableDimensions;
-    baulkZone.setWidth((baulkZone.rheight())/2);
-     this->setColour(Qt::white);
-//    this->setPosition(QVector2D(rand() % tableDimensions.rwidth(),rand() % tableDimensions.rheight()));
-//    qDebug() << "in here!";
+    if(baulkZone.isEmpty()){
+        baulkZone = tableDimensions;
+        baulkZone.setWidth((baulkZone.rheight())/2);
+    }
+
 }

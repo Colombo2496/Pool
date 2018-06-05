@@ -62,10 +62,9 @@ void Dialog::runSimulationStep()
             m_game->simulateTimeStep(timeStep);
         }else
         {
-            m_game->cueBallPresent();
             //Emits a signal to place the cue ball. before continuing the game
            emit placeCueBall(m_game->size());
-
+            m_game->makeCueBallAvailable();
         }
     }
 }

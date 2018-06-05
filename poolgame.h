@@ -47,10 +47,20 @@ public:
      * @brief size
      * @return the size of the game
      */
-    QSize size(){return QSize(m_table->width(),m_table->height());}
+    QSize size() const {return QSize(m_table->width(),m_table->height());}
 
-    bool getCueball()const {return cueBall;};
-    void cueBallPresent(){cueBall = true;};
+    /**
+     * @brief getCueball
+     * @return if the CueBall is available
+     */
+    bool getCueball() const {return cueBall;}
+
+
+    /**
+     * @brief makeCueBallAvailable - Gives the player the CueBall so they can
+     * interact with and continue playing
+     */
+    void makeCueBallAvailable(){cueBall = true;}
 
 private:
     /**

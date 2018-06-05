@@ -24,6 +24,7 @@ void CueBallDecorator::mousePressed(QMouseEvent *event)
     {
         clicked = true;
         mousePos = QVector2D(event->pos());
+        placeCue = false;
     }else if(placeCue){
         mousePos = QVector2D(event->pos());
     }
@@ -53,6 +54,7 @@ void CueBallDecorator::mouseReleased(QMouseEvent *event)
         }else
         {
             qDebug() << "must be inside the baulk";
+            qDebug() << mousePos;
         }
     }else if(clicked)
     {

@@ -9,25 +9,16 @@
 #include "dialog.h"
 
 using namespace std;
-class statistics
+class Statistics : public QObject
 {
 public:
-    statistics(Dialog &parent,vector<unsigned int*> pocketStats);
-
-//    /* Update Methods
-//     */
-//    /**
-//     * @brief updatePocketStats - Updates the pockets statistics
-//     * @param index - which pocket will be updated
-//     * @param newValue - the new value(if not specified nothing occurs)
-//     */
-//    void updatePocketStats(int const index,int newValue = 0);
+    Statistics(Dialog *parent,PoolGame game);
 
     /* Getter Methods
      */
     /**
      * @brief getPocketStats
-     * @return all the pocket statistics
+     * @return all the pocket Statistics
      */
     vector<unsigned int*> const getPocketStats() {return m_pocketStats;}
 
@@ -43,10 +34,31 @@ public:
      */
     void showStatistics();
 
+    /**
+     * @brief statsToString - Makes all the stats into a string to be parsed through
+     * @return
+     */
+    string statsToString();
+
+public slots:
+    void keyPressed(QKeyEvent * event);
+    void keyReleased(QKeyEvent * event);
+
 private:
+
+    /**
+     * @brief setUpPopUp - Adds: Palette,FrameStyle,Alignment,FixedSize
+     */
+    void setUpPopUp();
+    /**
+     * @brief setUpPointers - set up the pointers for the Stat variables
+     */
+    void setUpPointers(PoolGame game);
+
+
     vector<unsigned int*> m_pocketStats;
-    vector<unsigned int*> m_accuracy;
-    QLabel _popUp;
+    QVector2D* m_accuracy;
+    QLabel m_popUp;
 };
 
 #endif // STATISTICS_H

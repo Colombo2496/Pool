@@ -81,6 +81,8 @@ void PoolGame::draw(QPainter &p)
 ChangeInPoolGame PoolGame::collide(Ball *b1, Ball *b2)
 {
     //using the code provided for the collision mechanics
+    if(b1->colour() == Qt::white)
+        accuracy.setY(accuracy.y() + 1); //updating accuracy
 
     //calculate their mass ratio
     float mR = b2->mass() / b1->mass();

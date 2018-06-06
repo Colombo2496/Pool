@@ -25,6 +25,8 @@ public:
      */
     void draw(QPainter &p);
 
+//    std::vector<unsigned int*> getPocketStats(){m_pockets.at(0)->}
+
 private:
     QColor m_colour;
     std::vector<Pocket*> m_pockets;

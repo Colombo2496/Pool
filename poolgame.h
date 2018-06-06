@@ -8,7 +8,6 @@
 
 #include "table.h"
 #include "ball.h"
-
 #include "changeinpoolgame.h"
 
 /**
@@ -55,6 +54,11 @@ public:
      */
     bool getCueball() const {return cueBall;}
 
+    /**
+     * @brief getAccuracy - gives raw values (no accuracy calculated yet)
+     * @return address of the variable accuracy
+     */
+    QVector2D* getAccuracy() { return &accuracy;}
 
     /**
      * @brief makeCueBallAvailable - Gives the player the CueBall so they can
@@ -71,7 +75,7 @@ private:
      */
     ChangeInPoolGame collide(Ball *b1, Ball *b2);
 
-
+    QVector2D accuracy;
     Table * m_table;
     std::vector<Ball*> m_balls;
     bool cueBall;

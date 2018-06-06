@@ -23,6 +23,7 @@ ChangeInPoolGame Stage2Table::ballCollision(Ball *b)
     {
         if(p->encompassed(b->position(),b->radius()))
         {
+            p->updateCounter();//when a ball goes in
             //Make sure the white ball does reset!
             return ChangeInPoolGame({b});
         }

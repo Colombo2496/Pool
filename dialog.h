@@ -56,6 +56,8 @@ signals:
     void mouseMoved(QMouseEvent * event);
     void mouseReleased(QMouseEvent * event);
     void placeCueBall(QSize tableDimensions);
+    void keyPressed(QKeyEvent * event);
+    void keyReleased(QKeyEvent * event);
 
 public slots:
     void runSimulationStep();

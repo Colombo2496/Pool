@@ -34,6 +34,7 @@ public:
      */
     Table *makeTable(const QJsonObject &config);
 
+
 private:
     /**
      * @brief makeBallBasedOnParent creates a ball with defaults and bounds based upon the parent
@@ -46,5 +47,6 @@ private:
     QVector2D m_tableDimensions;
     bool cueBallSet;
     Dialog * dialog;
+
 };
 #endif // STAGE2FACTORY_H

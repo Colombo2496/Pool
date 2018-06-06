@@ -11,6 +11,7 @@
 #include "stage1factory.h"
 #include "stage2factory.h"
 #include "gamebuilder.h"
+#include "statistics.h"
 class Dialog;
 
 QJsonObject jsonFromFile(const std::string &configFilePath)
@@ -81,5 +82,6 @@ PoolGame *Initializer::createPoolgame(const std::string &configFilePath, Dialog 
         std::cout << "no \"ball\" key found" <<std::endl;
         return nullptr;
     }
+//    Statistics* stat = new Statistics(parent,)
     return builder.getGame();
 }

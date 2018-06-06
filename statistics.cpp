@@ -1,8 +1,9 @@
 #include "statistics.h"
 
 
-Statistics::Statistics(Dialog *parent, PoolGame game):
-    m_popUp(QString::fromLatin1("play for some stats"),parent,Qt::SplashScreen | Qt::WindowStaysOnTopHint)
+Statistics::Statistics(Dialog *parent, PoolGame game, std::vector<unsigned int *> *pocketStats):
+    m_popUp(QString::fromLatin1("play for some stats"),parent,Qt::SplashScreen | Qt::WindowStaysOnTopHint),
+    m_pocketStats(pocketStats)
 {
     /* Connect dialog signals to Statistics slots
      * So that its notified when keyboard is used

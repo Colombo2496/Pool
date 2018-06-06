@@ -37,12 +37,21 @@ void PoolGame::simulateTimeStep(float timeStep)
     //a collision between each possible pair of balls
     for(size_t i = 0; i < m_balls.size();++i)
     {
+        int counter = 0;
         for(size_t j = i+1;j < m_balls.size();++j)
         {
             if(m_balls[i]->collidesWith(m_balls[j]))
             {
+                counter++;
                 totalChange = totalChange.merge(collide(m_balls[i],m_balls[j]));
             }
+        }
+
+        //Checks if the Cue ball has collided with any ball
+        if(counter >=1 && m_balls[i]->colour() == Qt::white){
+            accuracy.setX(accuracy.x() + 1); //Collided
+        }else{
+            accuracy.setY(accuracy.y() + 1); //No Collision
         }
     }
 
@@ -81,8 +90,6 @@ void PoolGame::draw(QPainter &p)
 ChangeInPoolGame PoolGame::collide(Ball *b1, Ball *b2)
 {
     //using the code provided for the collision mechanics
-    if(b1->colour() == Qt::white)
-        accuracy.setY(accuracy.y() + 1); //updating accuracy
 
     //calculate their mass ratio
     float mR = b2->mass() / b1->mass();

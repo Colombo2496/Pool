@@ -1,7 +1,7 @@
 #ifndef STATISTICS_H
 #define STATISTICS_H
 
-#include <QWidget>
+//#include <QWidget>
 #include <QLabel>
 #include <vector>
 
@@ -12,7 +12,7 @@ using namespace std;
 class Statistics : public QObject
 {
 public:
-    Statistics(Dialog *parent,PoolGame game);
+    Statistics(Dialog *parent, PoolGame* game, std::vector<unsigned int *>* pocketStats = nullptr );
 
     /* Getter Methods
      */
@@ -20,7 +20,7 @@ public:
      * @brief getPocketStats
      * @return all the pocket Statistics
      */
-    vector<unsigned int*> const getPocketStats() {return m_pocketStats;}
+    vector<unsigned int*>*  getPocketStats() {return m_pocketStats;}
 
     /**
      * @brief getAccuracy - Calculates the accuracy based on
@@ -56,7 +56,7 @@ private:
     void setUpPointers(PoolGame game);
 
 
-    vector<unsigned int*> m_pocketStats;
+    vector<unsigned int*>* m_pocketStats;
     QVector2D* m_accuracy;
     QLabel m_popUp;
 };

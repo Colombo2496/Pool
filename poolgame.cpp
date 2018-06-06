@@ -24,6 +24,7 @@ void PoolGame::simulateTimeStep(float timeStep)
                 totalChange.m_ballsToRemove.clear();
                 b->setPosition(QVector2D( -200 ,- 200)); //place outside view
                 b->setVelocity(QVector2D(0,0));
+                cueballSunk++;
                 cueBall = false;
                 return;
             }else{
@@ -42,7 +43,7 @@ void PoolGame::simulateTimeStep(float timeStep)
         {
             if(m_balls[i]->collidesWith(m_balls[j]))
             {
-                //put it somewhere else
+                //put it somewhere else otherwise it'll be unnacurate accuracy.
                 counter++;
                 totalChange = totalChange.merge(collide(m_balls[i],m_balls[j]));
             }
@@ -53,7 +54,6 @@ void PoolGame::simulateTimeStep(float timeStep)
             accuracy.setX(accuracy.x() + 1); //Collided
         }else{
             accuracy.setY(accuracy.y() + 1); //No Collision
-
         }
     }
 

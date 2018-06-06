@@ -23,7 +23,7 @@ public:
      * @param balls a vector of pointers to balls, Poolgame takes ownership of all the contained pointers
      */
     PoolGame(Table * m_table,std::vector<Ball*> balls)
-        :m_table(m_table),m_balls(balls)
+        :cueballSunk(0),m_table(m_table),m_balls(balls)
     {
         cueBall = true;
     }
@@ -60,6 +60,7 @@ public:
      */
     QVector2D* getAccuracy() { return &accuracy;}
 
+
     /**
      * @brief makeCueBallAvailable - Gives the player the CueBall so they can
      * interact with and continue playing
@@ -76,6 +77,7 @@ private:
     ChangeInPoolGame collide(Ball *b1, Ball *b2);
 
     QVector2D accuracy;
+    unsigned int cueballSunk;
     Table * m_table;
     std::vector<Ball*> m_balls;
     bool cueBall;

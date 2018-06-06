@@ -1,7 +1,8 @@
 #include "statistics.h"
 
 
-Statistics::Statistics(Dialog *parent, PoolGame game):
+Statistics::Statistics(Dialog *parent,PoolGame game,std::vector<unsigned int*> pocketStats):
+    m_pocketStats(pocketStats),
     m_popUp(QString::fromLatin1("play for some stats"),parent,Qt::SplashScreen | Qt::WindowStaysOnTopHint)
 {
     /* Connect dialog signals to Statistics slots
@@ -48,5 +49,5 @@ void Statistics::setUpPopUp()
 
 void Statistics::setUpPointers(PoolGame game)
 {
-
+    this->m_accuracy = game.getAccuracy();
 }

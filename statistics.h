@@ -12,7 +12,7 @@ using namespace std;
 class Statistics : public QObject
 {
 public:
-    Statistics(Dialog *parent,PoolGame game);
+    Statistics(Dialog *parent,PoolGame game,std::vector<unsigned int*> pocketStats);
 
     /* Getter Methods
      */

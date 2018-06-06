@@ -17,6 +17,16 @@ void Stage2Table::draw(QPainter &p)
     }
 }
 
+std::vector<unsigned int*> Stage2Table::getPocketStats()
+{
+    std::vector<unsigned int*> stats;
+    for(Pocket *p : this->m_pockets){
+        unsigned int counter = p->getCounter();
+        stats.push_back(&counter);
+    }
+    return stats;
+}
+
 ChangeInPoolGame Stage2Table::ballCollision(Ball *b)
 {
     for(Pocket * p: m_pockets)

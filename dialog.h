@@ -7,7 +7,6 @@
 #include <QTimer>
 #include <QMouseEvent>
 #include "poolgame.h"
-#include "statistics.h"
 
 /**
  * @brief The Dialog class starts up and displays a poolgame

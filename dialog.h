@@ -6,7 +6,9 @@
 #include <QPaintEvent>
 #include <QTimer>
 #include <QMouseEvent>
+#include <QKeyEvent>
 #include "poolgame.h"
+//#include "statistics.h"
 
 /**
  * @brief The Dialog class starts up and displays a poolgame
@@ -51,6 +53,18 @@ public:
      * @param event
      */
     void mouseReleaseEvent(QMouseEvent *event);
+
+    /**
+     * @brief keyPressed just emits a keyPressed signal
+     * @param event
+     */
+    void keyPressedEvent(QKeyEvent *event);
+
+    /**
+     * @brief keyReleaseEvent just emits a keyRelease signal
+     * @param event
+     */
+    void keyReleaseEvent(QKeyEvent *event);
 signals:
     void mousePressed(QMouseEvent * event);
     void mouseMoved(QMouseEvent * event);
@@ -65,6 +79,7 @@ private:
     PoolGame * m_game;
     QTimer * m_framerateTimer;
     QTimer * m_timestepTimer;
+//    Statistics * stat;
 };
 
 #endif // DIALOG_H

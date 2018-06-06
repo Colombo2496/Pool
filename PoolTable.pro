@@ -29,7 +29,8 @@ SOURCES += main.cpp \
     changeinpoolgame.cpp \
     cueballdecorator.cpp \
     duplicationballdecorator.cpp \
-    statistics.cpp
+    statistics.cpp \
+    stage3factory.cpp
 
 HEADERS  += dialog.h \
     poolgame.h \
@@ -50,5 +51,6 @@ HEADERS  += dialog.h \
     balldecorator.h \
     cueballdecorator.h \
     duplicationballdecorator.h \
-    statistics.h
+    statistics.h \
+    stage3factory.h
 

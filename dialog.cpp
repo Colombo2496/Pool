@@ -2,11 +2,13 @@
 
 #include <QPainter>
 #include <QSize>
+#include "QDebug"
 constexpr float fps = 60;
 constexpr float timeStep = 0.01;
 
 Dialog::Dialog(QWidget *parent)
     :QDialog(parent),m_game(nullptr),m_framerateTimer(new QTimer()),m_timestepTimer(new QTimer())
+//      stat(this)
 {}
 
 void Dialog::start(PoolGame *game)
@@ -18,6 +20,7 @@ void Dialog::start(PoolGame *game)
     connect(m_timestepTimer,SIGNAL(timeout()),this,SLOT(runSimulationStep()));
     m_framerateTimer->start(1000/fps);
     m_timestepTimer->start(1000*timeStep);
+//    stat->
 }
 
 void Dialog::paintEvent(QPaintEvent *)
@@ -29,6 +32,7 @@ void Dialog::paintEvent(QPaintEvent *)
 
 void Dialog::mousePressEvent(QMouseEvent *event)
 {
+    qDebug()<< "in here mouse";
     emit mousePressed(event);
 }
 
@@ -40,6 +44,17 @@ void Dialog::mouseMoveEvent(QMouseEvent *event)
 void Dialog::mouseReleaseEvent(QMouseEvent *event)
 {
     emit mouseReleased(event);
+}
+
+void Dialog::keyPressedEvent(QKeyEvent *event)
+{
+    qDebug()<< "in here";
+    emit keyPressed(event);
+}
+
+void Dialog::keyReleaseEvent(QKeyEvent *event)
+{
+    emit keyReleased(event);
 }
 
 Dialog::~Dialog()

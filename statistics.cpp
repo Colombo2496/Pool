@@ -1,9 +1,9 @@
 #include "statistics.h"
+#include "QDebug"
 
 
-
-Statistics::Statistics(Dialog *parent,PoolGame game,std::vector<unsigned int*> pocketStats):
-    m_pocketStats(pocketStats),
+Statistics::Statistics(Dialog *parent):
+//    m_pocketStats(pocketStats),
     m_popUp(QString::fromLatin1("play for some stats"),parent,Qt::SplashScreen | Qt::WindowStaysOnTopHint)
 {
     /* Connect dialog signals to Statistics slots
@@ -14,7 +14,7 @@ Statistics::Statistics(Dialog *parent,PoolGame game,std::vector<unsigned int*> p
 
     //Setting up the variable pointers
     setUpPopUp();
-    setUpPointers(game);
+//    setUpPointers(game);
 }
 
 
@@ -25,6 +25,7 @@ float Statistics::getAccuracy()
 
 void Statistics::keyPressed(QKeyEvent *event)
 {
+    qDebug() << "HEY AI HERE";
     if(event->key() == Qt::Key_S)
     {
         m_popUp.show();
@@ -33,6 +34,7 @@ void Statistics::keyPressed(QKeyEvent *event)
 
 void Statistics::keyReleased(QKeyEvent *event)
 {
+
     if(event->key() == Qt::Key_S)
         m_popUp.hide();
 }
@@ -45,7 +47,7 @@ void Statistics::setUpPopUp()
     m_popUp.setFrameStyle(QLabel::Raised | QLabel::Panel);
     m_popUp.setAlignment(Qt::AlignCenter);
     m_popUp.setFixedSize(320, 200);
-    m_popUp.show();
+//    m_popUp.show();
 }
 
 void Statistics::setUpPointers(PoolGame game)

@@ -4,6 +4,7 @@
 #include "initializer.h"
 #include "poolgame.h"
 #include <QDebug>
+#include "statistics.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,6 +15,7 @@ int main(int argc, char *argv[])
     if(!game) return a.exec();
     w.show();
     w.start(game);
+    Statistics stat(&w);
     return a.exec();
 
 }

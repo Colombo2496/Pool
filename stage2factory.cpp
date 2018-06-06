@@ -6,7 +6,7 @@
 
 #include "util.h"
 #include "stage2ball.h"
-#include "stage2Table.h"
+#include "stage2table.h"
 #include "cueballdecorator.h"
 #include "duplicationballdecorator.h"
 

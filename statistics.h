@@ -13,7 +13,7 @@ class Statistics : public QObject
 {
 public:
 
-    Statistics(Dialog *parent,PoolGame game,std::vector<unsigned int*> pocketStats);
+    Statistics(Dialog *parent/*,PoolGame game,std::vector<unsigned int*> pocketStats*/);
 
 
     /* Getter Methods
@@ -42,6 +42,11 @@ public:
      */
     string statsToString();
 
+    /**
+     * @brief setUpPointers - set up the pointers for the Stat variables
+     */
+    void setUpPointers(PoolGame game);
+
 public slots:
     void keyPressed(QKeyEvent * event);
     void keyReleased(QKeyEvent * event);
@@ -52,10 +57,7 @@ private:
      * @brief setUpPopUp - Adds: Palette,FrameStyle,Alignment,FixedSize
      */
     void setUpPopUp();
-    /**
-     * @brief setUpPointers - set up the pointers for the Stat variables
-     */
-    void setUpPointers(PoolGame game);
+
 
 
     vector<unsigned int*> m_pocketStats;

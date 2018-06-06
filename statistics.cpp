@@ -3,7 +3,6 @@
 
 
 Statistics::Statistics(Dialog *parent):
-//    m_pocketStats(pocketStats),
     m_popUp(QString::fromLatin1("play for some stats"),parent,Qt::SplashScreen | Qt::WindowStaysOnTopHint)
 {
     /* Connect dialog signals to Statistics slots
@@ -14,7 +13,6 @@ Statistics::Statistics(Dialog *parent):
 
     //Setting up the variable pointers
     setUpPopUp();
-//    setUpPointers(game);
 }
 
 
@@ -22,9 +20,10 @@ float Statistics::getAccuracy()
 {
     // HITS OVER TOTAL
     float accuracy = 0.00;
-    if(!m_accuracy->isNull()){
-    float total = m_accuracy->x() + m_accuracy->y();
-    float hits = m_accuracy->x();
+    QVector2D* recordedAcc = this->ballStats->getAccuracy();
+    if(!recordedAcc->isNull()){
+    float total =  + recordedAcc->y();
+    float hits = recordedAcc->x();
        accuracy = hits/total;
     }
 
@@ -37,8 +36,16 @@ QString Statistics::statsToString()
     float accuracy = this->getAccuracy();
     QString returningString;
     returningString.append("****Stats****\n");
+
+    //Accuracy
     returningString.append("Accuracy: ");
-    returningString.append(QString::number(accuracy));
+    returningString.append(QString::number(accuracy,'g',3));
+    returningString.append("%\n");
+
+    //Times cue ball has sunk
+    unsigned int ballSunk = ballStats->getCueSinking();
+    returningString.append("Times Cue was sunk: ");
+    returningString.append(QString::number(ballStats->getCueSinking()));
     returningString.append("%\n");
     return returningString;
 }
@@ -73,5 +80,5 @@ void Statistics::setUpPopUp()
 
 void Statistics::setUpPointers(PoolGame * game)
 {
-    this->m_accuracy = game->getStats()->getAccuracy();
+    this->ballStats = game->getStats();
 }

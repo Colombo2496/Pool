@@ -30,7 +30,8 @@ SOURCES += main.cpp \
     cueballdecorator.cpp \
     duplicationballdecorator.cpp \
     statistics.cpp \
-    stage3factory.cpp
+    stage3factory.cpp \
+    gamestats.cpp
 
 HEADERS  += dialog.h \
     poolgame.h \
@@ -52,5 +53,6 @@ HEADERS  += dialog.h \
     cueballdecorator.h \
     duplicationballdecorator.h \
     statistics.h \
-    stage3factory.h
+    stage3factory.h \
+    gamestats.h
 

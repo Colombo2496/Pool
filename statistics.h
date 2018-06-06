@@ -7,6 +7,7 @@
 
 #include "poolgame.h"
 #include "dialog.h"
+//#include "gamestats.h"
 
 using namespace std;
 class Statistics : public QObject
@@ -57,6 +58,7 @@ private:
 
     vector<unsigned int*> m_pocketStats;
     QVector2D* m_accuracy;
+
     QLabel m_popUp;
 };
 

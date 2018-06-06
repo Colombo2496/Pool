@@ -9,6 +9,7 @@ PoolGame::~PoolGame()
         delete b;
     }
     delete m_table;
+    delete stats;
 }
 
 void PoolGame::simulateTimeStep(float timeStep)
@@ -24,7 +25,7 @@ void PoolGame::simulateTimeStep(float timeStep)
                 totalChange.m_ballsToRemove.clear();
                 b->setPosition(QVector2D( -200 ,- 200)); //place outside view
                 b->setVelocity(QVector2D(0,0));
-                cueballSunk++;
+                stats->updateCueSinking();
                 cueBall = false;
                 return;
             }else{
@@ -49,12 +50,12 @@ void PoolGame::simulateTimeStep(float timeStep)
             }
         }
 
-        //Checks if the Cue ball has collided with any ball
-        if(counter >=1 && m_balls[i]->colour() == Qt::white){
-            accuracy.setX(accuracy.x() + 1); //Collided
-        }else{
-            accuracy.setY(accuracy.y() + 1); //No Collision
-        }
+//        //Checks if the Cue ball has collided with any ball
+//        if(counter >=1 && m_balls[i]->colour() == Qt::white){
+//            accuracy.setX(accuracy.x() + 1); //Collided
+//        }else{
+//            accuracy.setY(accuracy.y() + 1); //No Collision
+//        }
     }
 
     for(Ball * e:totalChange.m_ballsToRemove)

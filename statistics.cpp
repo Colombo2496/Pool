@@ -71,7 +71,7 @@ void Statistics::setUpPopUp()
 //    m_popUp.show();
 }
 
-void Statistics::setUpPointers(PoolGame *game)
+void Statistics::setUpPointers(PoolGame * game)
 {
-    this->m_accuracy = game->getAccuracy();
+    this->m_accuracy = game->getStats()->getAccuracy();
 }

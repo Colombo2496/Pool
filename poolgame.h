@@ -9,7 +9,7 @@
 #include "table.h"
 #include "ball.h"
 #include "changeinpoolgame.h"
-
+#include "gamestats.h"
 /**
  * @brief The PoolGame class runs the pool game, it is in charge of the physics of the pool game as well as
  * drawing the game
@@ -23,8 +23,9 @@ public:
      * @param balls a vector of pointers to balls, Poolgame takes ownership of all the contained pointers
      */
     PoolGame(Table * m_table,std::vector<Ball*> balls)
-        :cueballSunk(0),m_table(m_table),m_balls(balls)
+        :m_table(m_table),m_balls(balls)
     {
+        stats = new GameStats();
         cueBall = true;
     }
 
@@ -54,13 +55,8 @@ public:
      */
     bool getCueball() const {return cueBall;}
 
-    /**
-     * @brief getAccuracy - gives raw values (no accuracy calculated yet)
-     * @return address of the variable accuracy
-     */
-    QVector2D* getAccuracy() { return &accuracy;}
 
-
+    GameStats* getStats() {return stats;}
     /**
      * @brief makeCueBallAvailable - Gives the player the CueBall so they can
      * interact with and continue playing
@@ -76,8 +72,7 @@ private:
      */
     ChangeInPoolGame collide(Ball *b1, Ball *b2);
 
-    QVector2D accuracy;
-    unsigned int cueballSunk;
+    GameStats * stats;
     Table * m_table;
     std::vector<Ball*> m_balls;
     bool cueBall;

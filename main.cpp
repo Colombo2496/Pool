@@ -13,9 +13,10 @@ int main(int argc, char *argv[])
     PoolGame* game = Initializer().createPoolgame("/Users/Juan/Documents/2018/Semester 1/INFO3220/Assignment/#3/PoolTable/config.json",&w);
     //if the returned game is a nullptr the json file couldn't be found or was invalid
     if(!game) return a.exec();
+    Statistics stat(&w);
+    stat.setUpPointers(game);
     w.show();
     w.start(game);
-    Statistics stat(&w);
     return a.exec();
 
 }

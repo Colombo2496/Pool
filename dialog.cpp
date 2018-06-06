@@ -46,7 +46,7 @@ void Dialog::mouseReleaseEvent(QMouseEvent *event)
     emit mouseReleased(event);
 }
 
-void Dialog::keyPressedEvent(QKeyEvent *event)
+void Dialog::keyPressEvent(QKeyEvent *event)
 {
     qDebug()<< "in here";
     emit keyPressed(event);

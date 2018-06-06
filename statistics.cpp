@@ -20,14 +20,35 @@ Statistics::Statistics(Dialog *parent):
 
 float Statistics::getAccuracy()
 {
-    return 0.00;
+    // HITS OVER TOTAL
+    float accuracy = 0.00;
+    if(!m_accuracy->isNull()){
+    float total = m_accuracy->x() + m_accuracy->y();
+    float hits = m_accuracy->x();
+       accuracy = hits/total;
+    }
+
+
+    return accuracy;
+}
+
+QString Statistics::statsToString()
+{
+    float accuracy = this->getAccuracy();
+    QString returningString;
+    returningString.append("****Stats****\n");
+    returningString.append("Accuracy: ");
+    returningString.append(QString::number(accuracy));
+    returningString.append("%\n");
+    return returningString;
 }
 
 void Statistics::keyPressed(QKeyEvent *event)
 {
-    qDebug() << "HEY AI HERE";
+
     if(event->key() == Qt::Key_S)
     {
+        m_popUp.setText(statsToString());
         m_popUp.show();
     }
 }
@@ -50,7 +71,7 @@ void Statistics::setUpPopUp()
 //    m_popUp.show();
 }
 
-void Statistics::setUpPointers(PoolGame game)
+void Statistics::setUpPointers(PoolGame *game)
 {
-    this->m_accuracy = game.getAccuracy();
+    this->m_accuracy = game->getAccuracy();
 }

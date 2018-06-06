@@ -32,20 +32,15 @@ public:
     float getAccuracy();
 
     /**
-     * @brief showStatistics - Will make the popUp window pop-Up
-     */
-    void showStatistics();
-
-    /**
      * @brief statsToString - Makes all the stats into a string to be parsed through
      * @return
      */
-    string statsToString();
+   QString statsToString();
 
     /**
      * @brief setUpPointers - set up the pointers for the Stat variables
      */
-    void setUpPointers(PoolGame game);
+    void setUpPointers(PoolGame* game);
 
 public slots:
     void keyPressed(QKeyEvent * event);

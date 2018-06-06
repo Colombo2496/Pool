@@ -42,6 +42,7 @@ void PoolGame::simulateTimeStep(float timeStep)
         {
             if(m_balls[i]->collidesWith(m_balls[j]))
             {
+                //put it somewhere else
                 counter++;
                 totalChange = totalChange.merge(collide(m_balls[i],m_balls[j]));
             }

@@ -58,7 +58,7 @@ public:
      * @brief keyPressed just emits a keyPressed signal
      * @param event
      */
-    void keyPressedEvent(QKeyEvent *event);
+    void keyPressEvent(QKeyEvent *event);
 
     /**
      * @brief keyReleaseEvent just emits a keyRelease signal

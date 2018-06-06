@@ -32,7 +32,6 @@ void Dialog::paintEvent(QPaintEvent *)
 
 void Dialog::mousePressEvent(QMouseEvent *event)
 {
-    qDebug()<< "in here mouse";
     emit mousePressed(event);
 }
 
@@ -48,7 +47,6 @@ void Dialog::mouseReleaseEvent(QMouseEvent *event)
 
 void Dialog::keyPressEvent(QKeyEvent *event)
 {
-    qDebug()<< "in here";
     emit keyPressed(event);
 }
 

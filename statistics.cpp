@@ -43,10 +43,10 @@ QString Statistics::statsToString()
     returningString.append("%\n");
 
     //Times cue ball has sunk
-    unsigned int ballSunk = ballStats->getCueSinking();
+    unsigned int ballSunk = *ballStats->getCueSinking();
     returningString.append("Times Cue was sunk: ");
-    returningString.append(QString::number(ballStats->getCueSinking()));
-    returningString.append("%\n");
+    returningString.append(QString::number(ballSunk));
+    returningString.append("\n");
     return returningString;
 }
 

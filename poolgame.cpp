@@ -52,6 +52,7 @@ void PoolGame::simulateTimeStep(float timeStep)
             accuracy.setX(accuracy.x() + 1); //Collided
         }else{
             accuracy.setY(accuracy.y() + 1); //No Collision
+
         }
     }
 

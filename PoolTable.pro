@@ -29,11 +29,9 @@ SOURCES += main.cpp \
     changeinpoolgame.cpp \
     cueballdecorator.cpp \
     duplicationballdecorator.cpp \
-<<<<<<< HEAD
-    saveloadcommand.cpp
-=======
+    saveloadcommand.cpp \
     statistics.cpp
->>>>>>> master
+
 
 HEADERS  += dialog.h \
     poolgame.h \
@@ -54,9 +52,7 @@ HEADERS  += dialog.h \
     balldecorator.h \
     cueballdecorator.h \
     duplicationballdecorator.h \
-<<<<<<< HEAD
-    saveloadcommand.h
-=======
+    saveloadcommand.h \
     statistics.h
->>>>>>> master
+
 

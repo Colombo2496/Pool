@@ -76,12 +76,13 @@ signals:
 
 public slots:
     void runSimulationStep();
-    void playMusic();
+    void playMusic(bool stop);
 private:
     PoolGame * m_game;
     QTimer * m_framerateTimer;
     QTimer * m_timestepTimer;
     QMediaPlayer * ambientNoise;
+    bool stopMusic;
 };
 
 #endif // DIALOG_H

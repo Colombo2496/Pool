@@ -8,7 +8,7 @@ constexpr float timeStep = 0.01;
 
 Dialog::Dialog(QWidget *parent)
     :QDialog(parent),m_game(nullptr),m_framerateTimer(new QTimer()),m_timestepTimer(new QTimer())
-//      stat(this)
+    //      stat(this)
 {}
 
 void Dialog::start(PoolGame *game)
@@ -49,6 +49,9 @@ void Dialog::mouseReleaseEvent(QMouseEvent *event)
 
 void Dialog::keyPressEvent(QKeyEvent *event)
 {
+    if(event->key() == Qt::Key_M){
+        stopMusic = !stopMusic;
+    }
     emit keyPressed(event);
 }
 
@@ -62,30 +65,36 @@ Dialog::~Dialog()
     delete m_game;
     delete m_framerateTimer;
     delete m_timestepTimer;
+    delete ambientNoise;
 }
 
 void Dialog::runSimulationStep()
 {
     if(m_game)
     {
-        playMusic();
+        playMusic(stopMusic);
         if(m_game->getCueball())
         {
             m_game->simulateTimeStep(timeStep);
         }else
         {
             //Emits a signal to place the cue ball. before continuing the game
-           emit placeCueBall(m_game->size());
+            emit placeCueBall(m_game->size());
             m_game->makeCueBallAvailable();
         }
     }
 }
 
-void Dialog::playMusic()
+void Dialog::playMusic(bool stop)
 {
-    if(ambientNoise->state() == QMediaPlayer::PlayingState){
-//            ambientNoise->setPosition(0);
-    }else if(ambientNoise->state() == QMediaPlayer::StoppedState){
-        ambientNoise->play();
+    if(stop){
+        ambientNoise->stop();
+//        ambientNoise->setPosition(0); //reset it
+    }else{
+        if(ambientNoise->state() == QMediaPlayer::PlayingState){
+            //            ambientNoise->setPosition(0);
+        }else if(ambientNoise->state() == QMediaPlayer::StoppedState){
+            ambientNoise->play();
+        }
     }
 }

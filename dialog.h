@@ -7,6 +7,7 @@
 #include <QTimer>
 #include <QMouseEvent>
 #include "poolgame.h"
+#include "makeballcommand.h"
 
 /**
  * @brief The Dialog class starts up and displays a poolgame
@@ -39,6 +40,12 @@ public:
      * @param event
      */
     void mousePressEvent(QMouseEvent *event);
+
+    /**
+     * @brief mouseDoubleClickEvent tells a command to create a new ball in PoolGame
+     * @param event
+     */
+    void mouseDoubleClickEvent(QMouseEvent * event);
 
     /**
      * @brief mousePressEvent just emits the mouseMoved signal

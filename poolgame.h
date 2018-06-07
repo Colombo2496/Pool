@@ -62,6 +62,12 @@ public:
      */
     void makeCueBallAvailable(){cueBall = true;}
 
+    /**
+     * @brief makeBall - executed when player double clicks inside the pool
+     * Create a ball with random variables
+     */
+    void makeBall(QVector2D pos);
+
 private:
     /**
      * @brief collide two balls if they are in contact

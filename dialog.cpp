@@ -36,6 +36,12 @@ void Dialog::mousePressEvent(QMouseEvent *event)
     emit mousePressed(event);
 }
 
+void Dialog::mouseDoubleClickEvent(QMouseEvent * event)
+{
+    MakeBallCommand command(m_game,QVector2D(event->pos()));
+    command.execute();
+}
+
 void Dialog::mouseMoveEvent(QMouseEvent *event)
 {
     emit mouseMoved(event);

@@ -1,6 +1,7 @@
 #include "poolgame.h"
 #include "random"
 #include <QDebug>
+#include "stage2ball.h"
 
 PoolGame::~PoolGame()
 {
@@ -76,6 +77,22 @@ void PoolGame::draw(QPainter &p)
     {
         b->draw(p);
     }
+}
+
+void PoolGame::makeBall(QVector2D pos)
+{
+    Ball * b;
+    int randLimit = 50;
+    int colourLimit = 255;
+    SimpleStage2Ball *newBall = new SimpleStage2Ball();
+    newBall->setPosition(pos);
+    newBall->setColour(QColor(rand() %colourLimit, rand()%colourLimit, rand()%colourLimit));
+    newBall->setRadius(rand() % randLimit/2);
+    newBall->setMass(rand() % (randLimit/2));
+    newBall->setVelocity(QVector2D(rand() % randLimit *2,rand() % randLimit *2));
+    newBall->setStrength(std::numeric_limits<double>::infinity());
+    b = newBall;
+    this->m_balls.push_back(b);
 }
 
 ChangeInPoolGame PoolGame::collide(Ball *b1, Ball *b2)

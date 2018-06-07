@@ -25,7 +25,9 @@ public:
      */
     PoolGame(Table * m_table,std::vector<Ball*> balls)
         :m_table(m_table),m_balls(balls)
-    {}
+    {
+        cueBall = true;
+    }
 
     ~PoolGame();
 
@@ -45,7 +47,20 @@ public:
      * @brief size
      * @return the size of the game
      */
-    QSize size(){return QSize(m_table->width(),m_table->height());}
+    QSize size() const {return QSize(m_table->width(),m_table->height());}
+
+    /**
+     * @brief getCueball
+     * @return if the CueBall is available
+     */
+    bool getCueball() const {return cueBall;}
+
+
+    /**
+     * @brief makeCueBallAvailable - Gives the player the CueBall so they can
+     * interact with and continue playing
+     */
+    void makeCueBallAvailable(){cueBall = true;}
 
 private:
     /**
@@ -59,6 +74,7 @@ private:
 
     Table * m_table;
     std::vector<Ball*> m_balls;
+    bool cueBall;
 };
 
 #endif // POOLGAME_H

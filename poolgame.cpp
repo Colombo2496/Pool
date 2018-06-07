@@ -1,6 +1,6 @@
 #include "poolgame.h"
-
-
+#include "random"
+#include <QDebug>
 
 PoolGame::~PoolGame()
 {
@@ -17,7 +17,22 @@ void PoolGame::simulateTimeStep(float timeStep)
     //collisions of balls with the edge of the table
     for(Ball * b: m_balls)
     {
-        totalChange = totalChange.merge(m_table->ballCollision(b));
+        //check the CueBall fell in the pocket
+        if(b->colour() == Qt::white){
+            totalChange = totalChange.merge(m_table->ballCollision(b));
+            if(!totalChange.empty()){
+                totalChange.m_ballsToRemove.clear();
+                b->setPosition(QVector2D( -200 ,- 200)); //place outside view
+                b->setVelocity(QVector2D(0,0));
+                cueBall = false;
+                return;
+            }else{
+                cueBall = true;//still in play
+            }
+        }else{
+            totalChange = totalChange.merge(m_table->ballCollision(b));
+        }
+
     }
     //a collision between each possible pair of balls
     for(size_t i = 0; i < m_balls.size();++i)
@@ -67,39 +82,39 @@ ChangeInPoolGame PoolGame::collide(Ball *b1, Ball *b2)
 {
     //using the code provided for the collision mechanics
 
-     //calculate their mass ratio
-     float mR = b2->mass() / b1->mass();
+    //calculate their mass ratio
+    float mR = b2->mass() / b1->mass();
 
-     //calculate the axis of collision
-     QVector2D collisionVector = b2->position() - b1->position();
-     collisionVector.normalize();
+    //calculate the axis of collision
+    QVector2D collisionVector = b2->position() - b1->position();
+    collisionVector.normalize();
 
     //the proportion of each balls velocity along the axis of collision
-     double vA = QVector2D::dotProduct(collisionVector, b1->velocity());
-     double vB = QVector2D::dotProduct(collisionVector, b2->velocity());
-     //the balls are moving away from each other so do nothing
-     if (vA <= 0 && vB >= 0) {
-      return ChangeInPoolGame();
-     }
+    double vA = QVector2D::dotProduct(collisionVector, b1->velocity());
+    double vB = QVector2D::dotProduct(collisionVector, b2->velocity());
+    //the balls are moving away from each other so do nothing
+    if (vA <= 0 && vB >= 0) {
+        return ChangeInPoolGame();
+    }
 
-     //The velocity of each ball after a collision can be found by solving the quadratic equation
-     //given by equating momentum and energy before and after the collision and finding the velocities
-     //that satisfy this
-     //-(mR+1)x^2 2*(mR*vB+vA)x -((mR-1)*vB^2+2*vA*vB)=0
-     //first we find the discriminant
-     double a = -(mR + 1);
-     double b = 2 * (mR * vB + vA);
-     double c = -((mR - 1) * vB * vB + 2 * vA * vB);
-     double discriminant = sqrt(b * b - 4 * a * c);
-     double root = (-b + discriminant)/(2 * a);
-     //only one of the roots is the solution, the other pertains to the current velocities
-     if (root - vB < 0.01) {
-       root = (-b - discriminant)/(2 * a);
-     }
+    //The velocity of each ball after a collision can be found by solving the quadratic equation
+    //given by equating momentum and energy before and after the collision and finding the velocities
+    //that satisfy this
+    //-(mR+1)x^2 2*(mR*vB+vA)x -((mR-1)*vB^2+2*vA*vB)=0
+    //first we find the discriminant
+    double a = -(mR + 1);
+    double b = 2 * (mR * vB + vA);
+    double c = -((mR - 1) * vB * vB + 2 * vA * vB);
+    double discriminant = sqrt(b * b - 4 * a * c);
+    double root = (-b + discriminant)/(2 * a);
+    //only one of the roots is the solution, the other pertains to the current velocities
+    if (root - vB < 0.01) {
+        root = (-b - discriminant)/(2 * a);
+    }
 
 
-     //The resulting changes in velocity for ball A and B
-     ChangeInPoolGame changeFromB1 = b1->changeVelocity(mR * (vB - root) * collisionVector);
-     ChangeInPoolGame changeFromB2 = b2->changeVelocity((root - vB) * collisionVector);
-     return changeFromB1.merge(changeFromB2);
+    //The resulting changes in velocity for ball A and B
+    ChangeInPoolGame changeFromB1 = b1->changeVelocity(mR * (vB - root) * collisionVector);
+    ChangeInPoolGame changeFromB2 = b2->changeVelocity((root - vB) * collisionVector);
+    return changeFromB1.merge(changeFromB2);
 }

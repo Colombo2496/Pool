@@ -5,8 +5,11 @@
 #include "dialog.h"
 
 #include <QWidget>
+#include <QLabel>
+#include <QTimer>
 #include <QPainter>
 #include <QMouseEvent>
+#include <QSize>
 
 /**
  * @brief The CueBallDecorator class is the decorator that turns a ball into a cue ball
@@ -21,15 +24,28 @@ public:
      */
     CueBallDecorator(Ball * b, Dialog * parent);
     void draw(QPainter &p);
+
+    /**
+     * @brief showPopup - Window pops up instructing user what to do. It'll dissapear in 3s
+     * @param insideBaulk - If true displays message instructing to place CUE
+     * inside behind (on the left hand side) of the baulk line.
+     * Otherwise instruct the player to palce the cue inside the baulk zone.
+     */
+    void showPopup(bool wrongPlacement);
 public slots:
     void mousePressed(QMouseEvent * event);
     void mouseMoved(QMouseEvent * event);
     void mouseReleased(QMouseEvent * event);
+    void placeCueBall(QSize tableDimensions);
 
 private:
+    void setUpPopUp();
     QVector2D endpoint;
     QVector2D mousePos;
     bool clicked;
+    bool placeCue;
+    QSize baulkZone;
+    QLabel popup;
 };
 
 #endif // CUEBALLDECORATOR_H

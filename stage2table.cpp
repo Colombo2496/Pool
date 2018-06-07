@@ -6,6 +6,10 @@ void Stage2Table::draw(QPainter &p)
     p.setPen(Qt::black);
     p.setBrush(QBrush(m_colour));
     p.drawRect(0,0,m_width,m_height);
+    p.setBrush(QBrush(Qt::black));
+    //drawing the balkline
+//    p.drawLine(m_width - (m_height/2),0,m_width - (m_height/2),m_height); //bulkzone right
+    p.drawLine((m_height/2),0,(m_height/2),m_height);    //bulkzone left
 
     for(Pocket * pocket: m_pockets)
     {
@@ -19,6 +23,7 @@ ChangeInPoolGame Stage2Table::ballCollision(Ball *b)
     {
         if(p->encompassed(b->position(),b->radius()))
         {
+            //Make sure the white ball does reset!
             return ChangeInPoolGame({b});
         }
     }

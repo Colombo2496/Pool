@@ -15,5 +15,4 @@ int main(int argc, char *argv[])
     w.show();
     w.start(game);
     return a.exec();
-
 }

@@ -46,7 +46,6 @@ void Dialog::mouseReleaseEvent(QMouseEvent *event)
     emit mouseReleased(event);
 }
 
-
 Dialog::~Dialog()
 {
     delete m_game;
@@ -57,5 +56,15 @@ Dialog::~Dialog()
 void Dialog::runSimulationStep()
 {
     if(m_game)
-        m_game->simulateTimeStep(timeStep);
+    {
+        if(m_game->getCueball())
+        {
+            m_game->simulateTimeStep(timeStep);
+        }else
+        {
+            //Emits a signal to place the cue ball. before continuing the game
+           emit placeCueBall(m_game->size());
+            m_game->makeCueBallAvailable();
+        }
+    }
 }

@@ -6,8 +6,14 @@
 #include <QDebug>
 #include "statistics.h"
 
+
 int main(int argc, char *argv[])
 {
+//    player = new QMediaPlayer;
+//    // ...
+//    player->setMedia(QUrl::fromLocalFile("/Users/me/Music/coolsong.mp3"));
+//    player->setVolume(50);
+//    player->play();
     QApplication a(argc, argv);
     Dialog w;
     PoolGame* game = Initializer().createPoolgame("/Users/Juan/Documents/2018/Semester 1/INFO3220/Assignment/#3/PoolTable/config.json",&w);

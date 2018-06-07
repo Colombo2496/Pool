@@ -3,6 +3,7 @@
 #include <QColor>
 #include <QPainter>
 #include <vector>
+#include <QMediaPlayer>
 
 #include "table.h"
 #include "pocket.h"
@@ -14,7 +15,11 @@ class Stage2Table : public Table
 public:
     Stage2Table(float width, float height,float friction, const QColor &colour, std::vector<Pocket*> pockets)
         :Table(width,height,friction),m_colour(colour),m_pockets(pockets)
-    {}
+    {
+        collisionSound = new QMediaPlayer();
+        collisionSound->setMedia(QUrl("qrc:/sounds/tableBallCollision.wav"));
+        collisionSound->setVolume(50);
+    }
 
     // Table interface
 public:
@@ -27,9 +32,12 @@ public:
 
     std::vector<unsigned int *> getPocketStats();
 
+    void playCollision();
+
 private:
     QColor m_colour;
     std::vector<Pocket*> m_pockets;
+    QMediaPlayer * collisionSound;
 
     // Table interface
 public:

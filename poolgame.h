@@ -5,6 +5,7 @@
 #include <QPainter>
 #include <QSize>
 #include "math.h"
+#include <QMediaPlayer>
 
 #include "table.h"
 #include "ball.h"
@@ -27,6 +28,9 @@ public:
     {
         stats = new GameStats();
         cueBall = true;
+        ballSounds = new QMediaPlayer();
+        ballSounds->setMedia(QUrl("qrc:/sounds/BallCollision.wav"));
+        ballSounds->setVolume(60);
     }
 
     ~PoolGame();
@@ -76,6 +80,7 @@ private:
     Table * m_table;
     std::vector<Ball*> m_balls;
     bool cueBall;
+    QMediaPlayer * ballSounds;
 };
 
 #endif // POOLGAME_H

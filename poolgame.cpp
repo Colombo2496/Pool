@@ -124,7 +124,11 @@ ChangeInPoolGame PoolGame::collide(Ball *b1, Ball *b2)
         root = (-b - discriminant)/(2 * a);
     }
 
-
+    if(ballSounds->state() == QMediaPlayer::PlayingState){
+        ballSounds->setPosition(0);
+    }else if(ballSounds->state() == QMediaPlayer::StoppedState){
+        ballSounds->play();
+    }
     //The resulting changes in velocity for ball A and B
     ChangeInPoolGame changeFromB1 = b1->changeVelocity(mR * (vB - root) * collisionVector);
     ChangeInPoolGame changeFromB2 = b2->changeVelocity((root - vB) * collisionVector);

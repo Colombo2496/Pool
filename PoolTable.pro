@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui \
+            multimedia
 CONFIG += console
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -55,4 +56,7 @@ HEADERS  += dialog.h \
     statistics.h \
     stage3factory.h \
     gamestats.h
+
+RESOURCES += \
+    res.qrc
 

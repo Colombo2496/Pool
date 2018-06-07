@@ -27,6 +27,16 @@ std::vector<unsigned int*> Stage2Table::getPocketStats()
     return stats;
 }
 
+void Stage2Table::playCollision()
+{
+    qDebug() << "playing sound";
+    if(collisionSound->state() == QMediaPlayer::PlayingState){
+        collisionSound->setPosition(0);
+    }else if(collisionSound->state() == QMediaPlayer::StoppedState){
+        collisionSound->play();
+    }
+}
+
 ChangeInPoolGame Stage2Table::ballCollision(Ball *b)
 {
     for(Pocket * p: m_pockets)
@@ -42,11 +52,19 @@ ChangeInPoolGame Stage2Table::ballCollision(Ball *b)
     //are we outside the bounds horizontally and getting further away?
     //if so reverse x velocity
     if((b->position().x()<b->radius() && b->velocity().x()<0) || (b->position().x()>width()-b->radius() && b->velocity().x()>0))
+    {
+        playCollision();
         return b->changeVelocity(QVector2D(-b->velocity().x()*2,0));
+    }
+
 
     //same but vertical
     if((b->position().y()<b->radius() && b->velocity().y()<0) || (b->position().y()>height()-b->radius() && b->velocity().y()>0))
-       return b->changeVelocity(QVector2D(0,-b->velocity().y()*2));
+    {
+        playCollision();
+        return b->changeVelocity(QVector2D(0,-b->velocity().y()*2));
+    }
+
 
     return ChangeInPoolGame();
 }

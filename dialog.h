@@ -76,6 +76,10 @@ signals:
 
 public slots:
     void runSimulationStep();
+    /**
+     * @brief playMusic - Play the background music or pause it
+     * @param stop if TRUE pause it else play it
+     */
     void playMusic(bool stop);
 private:
     PoolGame * m_game;

@@ -87,14 +87,15 @@ void Dialog::runSimulationStep()
 
 void Dialog::playMusic(bool stop)
 {
+    //Loop if reached the end of the music
+    if(ambientNoise->state() == QMediaPlayer::EndOfMedia){
+        //Rewind it back to the original starting point
+        ambientNoise->setPosition(0);
+    }
+
     if(stop){
-        ambientNoise->stop();
-//        ambientNoise->setPosition(0); //reset it
+        ambientNoise->pause();
     }else{
-        if(ambientNoise->state() == QMediaPlayer::PlayingState){
-            //            ambientNoise->setPosition(0);
-        }else if(ambientNoise->state() == QMediaPlayer::StoppedState){
-            ambientNoise->play();
-        }
+        ambientNoise->play();
     }
 }

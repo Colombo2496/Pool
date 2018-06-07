@@ -21,7 +21,7 @@ Extension Branches: "Contains various branches"
     to drop the ball in-order to play. COMPLETE
     2. If it's not behind the line send a box to the user to place behind the
       line.
-*0% COMPLETE* | Statistics Branch:
+*40% COMPLETE* | Statistics Branch: 1.3.0
   - Press the 's' button to pop up a statistics window.
   - **Statistics WINDOW** includes:
     - Pocket statistics:
@@ -39,7 +39,13 @@ Extension Branches: "Contains various branches"
       1. Use pointers only (maybe sharedPointers?)
       2. Connect to the Dialog (using the m_game inside)
 
-
+*90% COMPLETE* | specialEffects Branch: (HAS NOW MERGED WITH STATISTICS BRANCH)
+  - Adds special effects to the game. It includes:
+    - Background Noise: Get transported to Billards in LYON FRANCE
+    - BallCollision: Banging noise when balls collide
+    - BallTableCollision: Edge noise when ball and table edge collides
+    - CueHit: Hit the cue with the Cue stick
+  - Press M to mute sounds: TODO
 *********
 Requirements
 *********

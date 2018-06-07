@@ -88,7 +88,7 @@ void PoolGame::makeBall(QVector2D pos)
     newBall->setPosition(pos);
     newBall->setColour(QColor(rand() %colourLimit, rand()%colourLimit, rand()%colourLimit));
     newBall->setRadius(rand() % randLimit/2);
-    newBall->setMass(rand() % (randLimit/2));
+    newBall->setMass(rand() % (randLimit/5));
     newBall->setVelocity(QVector2D(rand() % (randLimit *2) +(-randLimit),rand() % (randLimit *2) + (-randLimit)));
     newBall->setStrength(std::numeric_limits<double>::infinity());
     b = newBall;

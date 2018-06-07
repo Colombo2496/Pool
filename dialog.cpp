@@ -20,7 +20,9 @@ void Dialog::start(PoolGame *game)
     connect(m_timestepTimer,SIGNAL(timeout()),this,SLOT(runSimulationStep()));
     m_framerateTimer->start(1000/fps);
     m_timestepTimer->start(1000*timeStep);
-//    stat->
+    ambientNoise = new QMediaPlayer();
+    ambientNoise->setMedia(QUrl("qrc:/sounds/ambienceNoise.mp3"));
+    ambientNoise->setVolume(45);
 }
 
 void Dialog::paintEvent(QPaintEvent *)
@@ -66,6 +68,7 @@ void Dialog::runSimulationStep()
 {
     if(m_game)
     {
+        playMusic();
         if(m_game->getCueball())
         {
             m_game->simulateTimeStep(timeStep);
@@ -75,5 +78,14 @@ void Dialog::runSimulationStep()
            emit placeCueBall(m_game->size());
             m_game->makeCueBallAvailable();
         }
+    }
+}
+
+void Dialog::playMusic()
+{
+    if(ambientNoise->state() == QMediaPlayer::PlayingState){
+//            ambientNoise->setPosition(0);
+    }else if(ambientNoise->state() == QMediaPlayer::StoppedState){
+        ambientNoise->play();
     }
 }

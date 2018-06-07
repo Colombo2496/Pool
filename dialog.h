@@ -7,6 +7,7 @@
 #include <QTimer>
 #include <QMouseEvent>
 #include <QKeyEvent>
+#include <QMediaPlayer>
 #include "poolgame.h"
 //#include "statistics.h"
 
@@ -75,11 +76,12 @@ signals:
 
 public slots:
     void runSimulationStep();
+    void playMusic();
 private:
     PoolGame * m_game;
     QTimer * m_framerateTimer;
     QTimer * m_timestepTimer;
-//    Statistics * stat;
+    QMediaPlayer * ambientNoise;
 };
 
 #endif // DIALOG_H

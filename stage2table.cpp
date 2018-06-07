@@ -29,7 +29,6 @@ std::vector<unsigned int*> Stage2Table::getPocketStats()
 
 void Stage2Table::playCollision()
 {
-    qDebug() << "playing sound";
     if(collisionSound->state() == QMediaPlayer::PlayingState){
         collisionSound->setPosition(0);
     }else if(collisionSound->state() == QMediaPlayer::StoppedState){

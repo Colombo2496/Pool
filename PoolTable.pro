@@ -33,8 +33,8 @@ SOURCES += main.cpp \
     statistics.cpp \
     stage3factory.cpp \
     gamestats.cpp \
-    stage3ball.cpp
-
+    stage3ball.cpp \
+    originator.cpp
 
 HEADERS  += dialog.h \
     poolgame.h \
@@ -58,7 +58,10 @@ HEADERS  += dialog.h \
     statistics.h \
     stage3factory.h \
     gamestats.h \
-    stage3ball.h
+    stage3ball.h \
+    memento.h \
+    originator.h \
+    caretaker.h
 
 RESOURCES += \
     res.qrc

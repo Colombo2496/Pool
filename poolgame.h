@@ -11,6 +11,10 @@
 #include "ball.h"
 #include "changeinpoolgame.h"
 #include "gamestats.h"
+
+#include "caretaker.h"
+#include "originator.h"
+
 /**
  * @brief The PoolGame class runs the pool game, it is in charge of the physics of the pool game as well as
  * drawing the game
@@ -31,15 +35,35 @@ public:
         ballSounds = new QMediaPlayer();
         ballSounds->setMedia(QUrl("qrc:/sounds/BallCollision.wav"));
         ballSounds->setVolume(60);
+        caretaker = new Caretaker();
+        originator = new Originator();
+        //setting up the original ones
+        originator->setState(m_balls);
+        caretaker->update(originator->saveToMemento());
     }
 
     ~PoolGame();
+
+    std::vector<Ball *> getBalls() const{
+        return m_balls;
+    }
 
     /**
      * @brief simulate one timestep of the game
      * @param timeStep is the period of time that this timestep is simulating
      */
     void simulateTimeStep(float timeStep);
+
+    /**
+     * @brief redoMove - Activated when the player decides to undo the last play
+     */
+    void undoMove();
+
+    /**
+     * @brief takeSnapshot - Updates the memento for the game.
+     * Will be activated everytime after the user releases the cueball for the shot.
+     */
+    void takeSnapshot();
 
     /**
      * @brief draws all elements of the game, table and balls in that order
@@ -81,6 +105,9 @@ private:
     std::vector<Ball*> m_balls;
     bool cueBall;
     QMediaPlayer * ballSounds;
+    Caretaker* caretaker;
+    Originator* originator;
+    QVector2D prevPos;
 };
 
 #endif // POOLGAME_H

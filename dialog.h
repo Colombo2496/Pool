@@ -55,16 +55,22 @@ public:
     void mouseReleaseEvent(QMouseEvent *event);
 
     /**
-     * @brief keyPressed just emits a keyPressed signal
+     * @brief keyPressEvent - emits signal when Keyboard key is pressed
      * @param event
      */
     void keyPressEvent(QKeyEvent *event);
 
     /**
-     * @brief keyReleaseEvent just emits a keyRelease signal
+     * @brief keyReleaseEvent - emits signal when Keyboard key is released
      * @param event
      */
     void keyReleaseEvent(QKeyEvent *event);
+
+    /**
+     * @brief restoreMove - Will activate the memento in m_game
+     */
+    void restoreMove();
+
 signals:
     void mousePressed(QMouseEvent * event);
     void mouseMoved(QMouseEvent * event);
@@ -86,6 +92,7 @@ private:
     QTimer * m_timestepTimer;
     QMediaPlayer * ambientNoise;
     bool stopMusic;
+    bool m_keyPressed;
 };
 
 #endif // DIALOG_H

@@ -12,10 +12,16 @@ CueBallDecorator::CueBallDecorator(Ball *b, Dialog *parent)
     connect(parent,&Dialog::placeCueBall,this,&CueBallDecorator::placeCueBall);
     hitCueSound.setMedia(QUrl("qrc:/sounds/CueballHit.wav"));
     hitCueSound.setVolume(50);
+    connect(parent,&Dialog::keyPressed,this,&CueBallDecorator::keyPressed);
+    connect(parent,&Dialog::keyReleased,this,&CueBallDecorator::keyReleased);
 }
 
 void CueBallDecorator::draw(QPainter &p)
 {
+    //Check for ball velocity here. When it's zero just replace the current memento with the new one
+//    if(m_ball->velocity() == QVector2D(0,0)){
+//        savedData
+//    }
     m_ball->draw(p);
     if(clicked)
         p.drawLine(mousePos.toPointF(),m_ball->position().toPointF());
@@ -106,4 +112,22 @@ void CueBallDecorator::setUpPopUp()
     popup.setFrameStyle(QLabel::Raised | QLabel::Panel);
     popup.setAlignment(Qt::AlignCenter);
     popup.setFixedSize(320, 200);
+}
+
+void CueBallDecorator::keyPressed(QKeyEvent *event)
+{
+    if(m_ball->velocity() == QVector2D(0,0) && event->key() == Qt::Key_R){
+        m_keyPressed = true;
+    }
+}
+
+void CueBallDecorator::keyReleased(QKeyEvent *event)
+{
+    if(m_keyPressed){
+        m_keyPressed = false;
+//        //Use the memento here!
+//        emit mementoTime();
+        qDebug() << "Use the memento";
+    }
+
 }

@@ -11,6 +11,9 @@
 #include <QMouseEvent>
 #include <QSize>
 #include <QMediaPlayer>
+#include <QKeyEvent>
+#include "caretaker.h"
+#include "originator.h"
 
 /**
  * @brief The CueBallDecorator class is the decorator that turns a ball into a cue ball
@@ -38,6 +41,9 @@ public slots:
     void mouseMoved(QMouseEvent * event);
     void mouseReleased(QMouseEvent * event);
     void placeCueBall(QSize tableDimensions);
+    void keyPressed(QKeyEvent *event);
+    void keyReleased(QKeyEvent *event);
+
 
 private:
     void setUpPopUp();
@@ -49,6 +55,8 @@ private:
     QLabel popup;
     QMediaPlayer hitCueSound;
 
+    bool m_keyPressed;
+    Caretaker savedData;
 };
 
 #endif // CUEBALLDECORATOR_H

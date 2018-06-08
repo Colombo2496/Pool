@@ -2,13 +2,14 @@
 
 #include <QPainter>
 #include <QSize>
-#include "QDebug"
+#include <QDebug>
+#include "cueballdecorator.h"
+
 constexpr float fps = 60;
 constexpr float timeStep = 0.01;
 
 Dialog::Dialog(QWidget *parent)
     :QDialog(parent),m_game(nullptr),m_framerateTimer(new QTimer()),m_timestepTimer(new QTimer())
-    //      stat(this)
 {}
 
 void Dialog::start(PoolGame *game)
@@ -44,12 +45,16 @@ void Dialog::mouseMoveEvent(QMouseEvent *event)
 
 void Dialog::mouseReleaseEvent(QMouseEvent *event)
 {
+        m_game->takeSnapshot();
     emit mouseReleased(event);
+
 }
 
 void Dialog::keyPressEvent(QKeyEvent *event)
 {
-    if(event->key() == Qt::Key_M){
+    if(event->key() == Qt::Key_R){
+        m_keyPressed = true;
+    }else if(event->key() == Qt::Key_M){
         stopMusic = !stopMusic;
     }
     emit keyPressed(event);
@@ -57,8 +62,19 @@ void Dialog::keyPressEvent(QKeyEvent *event)
 
 void Dialog::keyReleaseEvent(QKeyEvent *event)
 {
+    if(m_keyPressed){
+        m_keyPressed = false;
+        restoreMove();
+    }
     emit keyReleased(event);
 }
+
+void Dialog::restoreMove()
+{
+    m_game->undoMove();
+}
+
+
 
 Dialog::~Dialog()
 {

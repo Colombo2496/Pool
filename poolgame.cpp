@@ -10,6 +10,10 @@ PoolGame::~PoolGame()
     }
     delete m_table;
     delete stats;
+
+
+    delete caretaker;
+    delete originator;
 }
 
 void PoolGame::simulateTimeStep(float timeStep)
@@ -58,6 +62,7 @@ void PoolGame::simulateTimeStep(float timeStep)
 //        }
     }
 
+
     for(Ball * e:totalChange.m_ballsToRemove)
     {
         m_balls.erase(std::find(m_balls.begin(),m_balls.end(),e));
@@ -78,6 +83,36 @@ void PoolGame::simulateTimeStep(float timeStep)
         //if moving less than 5 pixels per second just stop
         if(b->velocity().length()<5)
             b->setVelocity(QVector2D(0,0));
+    }
+
+}
+
+void PoolGame::undoMove()
+{
+    originator->restoreFromMemento(caretaker->getCurrentState());
+    int index = 0;
+    for(Ball * a: m_balls)
+    {
+        //Index out of bounds if you break a composite ball
+        a->setVelocity(originator->getVelocity()->at(index));
+        a->setPosition(originator->getPosition()->at(index));
+
+        index++;
+    }
+}
+
+void PoolGame::takeSnapshot()
+{
+    for(Ball *b: m_balls){
+            //Search for the cueBall
+//        qDebug() << "COLOUR | VELOCITY: " << QString(b->colour().name()) << " | " << b->velocity();
+//        qDebug() << "******";
+        if(b->colour() == Qt::white && b->velocity() == QVector2D(0,0)){
+                qDebug() << "taking the snapshot";
+                originator->setState(m_balls);
+                caretaker->update(originator->saveToMemento());
+                break;
+            }
     }
 }
 

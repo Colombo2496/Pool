@@ -34,7 +34,9 @@ SOURCES += main.cpp \
     stage3factory.cpp \
     gamestats.cpp \
     stage3ball.cpp \
-    originator.cpp
+    originator.cpp \
+    makeballcommand.cpp
+
 
 HEADERS  += dialog.h \
     poolgame.h \
@@ -61,8 +63,11 @@ HEADERS  += dialog.h \
     stage3ball.h \
     memento.h \
     originator.h \
-    caretaker.h
+    caretaker.h \
+    abstractcommand.h \
+    makeballcommand.h
 
 RESOURCES += \
     res.qrc
+
 

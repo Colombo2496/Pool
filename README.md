@@ -11,7 +11,9 @@ Once they are complete/ready to run they will be merged with the master.
 	- press 'r' at any point to revert the game to last time shot
 	- If no opportunities are given yet. Revert game to read json File again
 
-Extension Branches: "Contains various branches"
+*******************
+EXTENSION BRANCHES
+*******************
 
 
 *100% COMPLETE* | resetCue Branch:
@@ -23,10 +25,8 @@ Extension Branches: "Contains various branches"
     to drop the ball in-order to play.
     2. If it's not behind the line a popup will occur instructing user
     where to place(CLICK) the Cue Ball.
-*0% COMPLETE* | Statistics Branch:
 
 *100% COMPLETE* | Statistics Branch: 1.3.0
-
   - Press the 's' button to pop up a statistics window.
   - **Statistics WINDOW** includes:
     - Pocket statistics:
@@ -51,10 +51,17 @@ Extension Branches: "Contains various branches"
     - BallTableCollision: Edge noise when ball and table edge collides
     - CueHit: Hit the cue with the Cue stick
   - Press M to mute Background Music
+
+
+*100% COMPLETE* | addBalls Branch: V 1.4.0
+  - Uses Commando Design pattern to implement it
+  - Makes new balls appear with random values whenever the player
+  double clicks.
+  - creates simple balls
 *********
 Requirements
 *********
 
 1. Use Memento Design (DONE)
 2. Use additional Pattern: Cannot be already present within the assignment even
-if it's a seperate instance.
+if it's a seperate instance. (DONE) -> Used Command for balls

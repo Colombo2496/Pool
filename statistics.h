@@ -1,18 +1,6 @@
 #ifndef STATISTICS_H
 #define STATISTICS_H
 
-<<<<<<< HEAD
-#include <QWidget>
-
-class statistics
-{
-public:
-    statistics();
-};
-
-#endif // STATISTICS_H
-=======
-//#include <QWidget>
 #include <QLabel>
 #include <vector>
 
@@ -79,4 +67,3 @@ private:
 };
 
 #endif // STATISTICS_H
->>>>>>> statistics

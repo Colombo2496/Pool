@@ -6,7 +6,6 @@
 
 QT       += core gui \
             multimedia
->>>>>>> statistics
 CONFIG += console
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets

@@ -16,9 +16,9 @@ public:
     Stage2Table(float width, float height,float friction, const QColor &colour, std::vector<Pocket*> pockets)
         :Table(width,height,friction),m_colour(colour),m_pockets(pockets)
     {
-        collisionSound = new QMediaPlayer();
-        collisionSound->setMedia(QUrl("qrc:/sounds/tableBallCollision.wav"));
-        collisionSound->setVolume(50);
+        m_collisionSound = new QMediaPlayer();
+        m_collisionSound->setMedia(QUrl("qrc:/sounds/tableBallCollision.wav"));
+        m_collisionSound->setVolume(50);
     }
 
     // Table interface
@@ -37,7 +37,7 @@ public:
 private:
     QColor m_colour;
     std::vector<Pocket*> m_pockets;
-    QMediaPlayer * collisionSound;
+    QMediaPlayer * m_collisionSound;
 
     // Table interface
 public:

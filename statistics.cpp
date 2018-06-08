@@ -37,10 +37,10 @@ QString Statistics::statsToString()
     QString returningString;
     returningString.append("****Stats****\n");
 
-    //Accuracy
-    returningString.append("Accuracy: ");
-    returningString.append(QString::number(accuracy,'g',3));
-    returningString.append("%\n");
+//    //Accuracy
+//    returningString.append("Accuracy: ");
+//    returningString.append(QString::number(accuracy,'g',3));
+//    returningString.append("%\n");
 
     //Times cue ball has sunk
     unsigned int ballSunk = *ballStats->getCueSinking();

@@ -1,5 +1,5 @@
 {
-"stage3" : true,
+"stage3" : false,
 "stage2" : true,
 "table" : {
  "colour":"green",

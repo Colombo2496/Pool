@@ -71,8 +71,6 @@ void Dialog::keyReleaseEvent(QKeyEvent *event)
 void Dialog::restoreMove()
 {
     m_game->undoMove();
-    qDebug() << "finished move";
-//    runSimulationStep();
 }
 
 

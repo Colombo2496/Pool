@@ -55,23 +55,6 @@ void PoolGame::simulateTimeStep(float timeStep)
         //if moving less than 5 pixels per second just stop
         if(b->velocity().length()<5)
             b->setVelocity(QVector2D(0,0));
-
-        //Applying Memento
-        //Found the cueball. Will do it every time cueball is stoppped
-//        if(b->colour() == Qt::white && b->velocity() == QVector2D(0,0)){
-////            originator->setState(m_balls);
-////                            caretaker->update(originator->saveToMemento());
-//            qDebug()<< "inside the cue ball stationary place";
-//            if(prevPos.isNull()){
-//                prevPos = b->position();
-//            }else if(prevPos != b->position()){
-//                qDebug() << "taking a snapshot";
-//                prevPos = b->position();
-//                originator->setState(m_balls);
-//                caretaker->update(originator->saveToMemento());
-//            }
-////            prevPos = b->position();
-//        }
     }
 
 }
@@ -85,7 +68,6 @@ void PoolGame::undoMove()
         //Index out of bounds if you break a composite ball
         a->setVelocity(originator->getVelocity()->at(index));
         a->setPosition(originator->getPosition()->at(index));
-//        qDebug() << a->position() << "<-Position a | POsition orig -> " <<originator->getPosition()->at(index);
 
         index++;
     }
@@ -95,8 +77,8 @@ void PoolGame::takeSnapshot()
 {
     for(Ball *b: m_balls){
             //Search for the cueBall
-        qDebug() << "COLOUR | VELOCITY: " << QString(b->colour().name()) << " | " << b->velocity();
-        qDebug() << "******";
+//        qDebug() << "COLOUR | VELOCITY: " << QString(b->colour().name()) << " | " << b->velocity();
+//        qDebug() << "******";
         if(b->colour() == Qt::white && b->velocity() == QVector2D(0,0)){
                 qDebug() << "taking the snapshot";
                 originator->setState(m_balls);
@@ -104,8 +86,6 @@ void PoolGame::takeSnapshot()
                 break;
             }
     }
-//    originator->setState(m_balls);
-//    caretaker->update(originator->saveToMemento());
 }
 
 void PoolGame::draw(QPainter &p)

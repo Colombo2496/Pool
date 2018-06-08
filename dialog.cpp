@@ -50,7 +50,6 @@ void Dialog::mouseReleaseEvent(QMouseEvent *event)
 void Dialog::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_M){
-        qDebug() << "here";
         stopMusic = !stopMusic;
     }
     emit keyPressed(event);

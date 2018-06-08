@@ -10,6 +10,8 @@ CueBallDecorator::CueBallDecorator(Ball *b, Dialog *parent)
     connect(parent,&Dialog::mouseMoved,this,&CueBallDecorator::mouseMoved);
     connect(parent,&Dialog::mouseReleased,this,&CueBallDecorator::mouseReleased);
     connect(parent,&Dialog::placeCueBall,this,&CueBallDecorator::placeCueBall);
+    hitCueSound.setMedia(QUrl("qrc:/sounds/CueballHit.wav"));
+    hitCueSound.setVolume(50);
 }
 
 void CueBallDecorator::draw(QPainter &p)
@@ -78,6 +80,11 @@ void CueBallDecorator::mouseReleased(QMouseEvent *event)
     {
         clicked = false;
         setVelocity(4*(m_ball->position()-mousePos));
+        if(hitCueSound.state() == QMediaPlayer::PlayingState){
+            hitCueSound.setPosition(0);
+        }else if(hitCueSound.state() == QMediaPlayer::StoppedState){
+            hitCueSound.play();
+        }
     }
 }
 

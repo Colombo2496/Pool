@@ -2,16 +2,14 @@
 
 #include <QPainter>
 #include <QSize>
-
+#include "QDebug"
 constexpr float fps = 60;
 constexpr float timeStep = 0.01;
 
 Dialog::Dialog(QWidget *parent)
     :QDialog(parent),m_game(nullptr),m_framerateTimer(new QTimer()),m_timestepTimer(new QTimer())
-{
-
-
-}
+    //      stat(this)
+{}
 
 void Dialog::start(PoolGame *game)
 {
@@ -22,6 +20,9 @@ void Dialog::start(PoolGame *game)
     connect(m_timestepTimer,SIGNAL(timeout()),this,SLOT(runSimulationStep()));
     m_framerateTimer->start(1000/fps);
     m_timestepTimer->start(1000*timeStep);
+    ambientNoise = new QMediaPlayer();
+    ambientNoise->setMedia(QUrl("qrc:/sounds/ambienceNoise.mp3"));
+    ambientNoise->setVolume(45);
 }
 
 void Dialog::paintEvent(QPaintEvent *)
@@ -46,25 +47,55 @@ void Dialog::mouseReleaseEvent(QMouseEvent *event)
     emit mouseReleased(event);
 }
 
+void Dialog::keyPressEvent(QKeyEvent *event)
+{
+    if(event->key() == Qt::Key_M){
+        stopMusic = !stopMusic;
+    }
+    emit keyPressed(event);
+}
+
+void Dialog::keyReleaseEvent(QKeyEvent *event)
+{
+    emit keyReleased(event);
+}
+
 Dialog::~Dialog()
 {
     delete m_game;
     delete m_framerateTimer;
     delete m_timestepTimer;
+    delete ambientNoise;
 }
 
 void Dialog::runSimulationStep()
 {
     if(m_game)
     {
+        playMusic(stopMusic);
         if(m_game->getCueball())
         {
             m_game->simulateTimeStep(timeStep);
         }else
         {
             //Emits a signal to place the cue ball. before continuing the game
-           emit placeCueBall(m_game->size());
+            emit placeCueBall(m_game->size());
             m_game->makeCueBallAvailable();
         }
+    }
+}
+
+void Dialog::playMusic(bool stop)
+{
+    //Loop if reached the end of the music
+    if(ambientNoise->state() == QMediaPlayer::EndOfMedia){
+        //Rewind it back to the original starting point
+        ambientNoise->setPosition(0);
+    }
+
+    if(stop){
+        ambientNoise->pause();
+    }else{
+        ambientNoise->play();
     }
 }

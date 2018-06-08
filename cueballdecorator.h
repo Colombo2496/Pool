@@ -10,6 +10,7 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <QSize>
+#include <QMediaPlayer>
 
 /**
  * @brief The CueBallDecorator class is the decorator that turns a ball into a cue ball
@@ -46,6 +47,8 @@ private:
     bool placeCue;
     QSize baulkZone;
     QLabel popup;
+    QMediaPlayer hitCueSound;
+
 };
 
 #endif // CUEBALLDECORATOR_H

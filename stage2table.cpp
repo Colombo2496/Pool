@@ -17,12 +17,32 @@ void Stage2Table::draw(QPainter &p)
     }
 }
 
+std::vector<unsigned int*> Stage2Table::getPocketStats()
+{
+    std::vector<unsigned int*> stats;
+    for(Pocket *p : this->m_pockets){
+        unsigned int counter = p->getCounter();
+        stats.push_back(&counter);
+    }
+    return stats;
+}
+
+void Stage2Table::playCollision()
+{
+    if(m_collisionSound->state() == QMediaPlayer::PlayingState){
+        m_collisionSound->setPosition(0);
+    }else if(m_collisionSound->state() == QMediaPlayer::StoppedState){
+        m_collisionSound->play();
+    }
+}
+
 ChangeInPoolGame Stage2Table::ballCollision(Ball *b)
 {
     for(Pocket * p: m_pockets)
     {
         if(p->encompassed(b->position(),b->radius()))
         {
+            p->updateCounter();//when a ball goes in
             //Make sure the white ball does reset!
             return ChangeInPoolGame({b});
         }
@@ -31,11 +51,19 @@ ChangeInPoolGame Stage2Table::ballCollision(Ball *b)
     //are we outside the bounds horizontally and getting further away?
     //if so reverse x velocity
     if((b->position().x()<b->radius() && b->velocity().x()<0) || (b->position().x()>width()-b->radius() && b->velocity().x()>0))
+    {
+        playCollision();
         return b->changeVelocity(QVector2D(-b->velocity().x()*2,0));
+    }
+
 
     //same but vertical
     if((b->position().y()<b->radius() && b->velocity().y()<0) || (b->position().y()>height()-b->radius() && b->velocity().y()>0))
-       return b->changeVelocity(QVector2D(0,-b->velocity().y()*2));
+    {
+        playCollision();
+        return b->changeVelocity(QVector2D(0,-b->velocity().y()*2));
+    }
+
 
     return ChangeInPoolGame();
 }

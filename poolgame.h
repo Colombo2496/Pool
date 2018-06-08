@@ -5,12 +5,12 @@
 #include <QPainter>
 #include <QSize>
 #include "math.h"
+#include <QMediaPlayer>
 
 #include "table.h"
 #include "ball.h"
-
 #include "changeinpoolgame.h"
-
+#include "gamestats.h"
 /**
  * @brief The PoolGame class runs the pool game, it is in charge of the physics of the pool game as well as
  * drawing the game
@@ -26,7 +26,11 @@ public:
     PoolGame(Table * m_table,std::vector<Ball*> balls)
         :m_table(m_table),m_balls(balls)
     {
+        stats = new GameStats();
         cueBall = true;
+        ballSounds = new QMediaPlayer();
+        ballSounds->setMedia(QUrl("qrc:/sounds/BallCollision.wav"));
+        ballSounds->setVolume(60);
     }
 
     ~PoolGame();
@@ -56,6 +60,7 @@ public:
     bool getCueball() const {return cueBall;}
 
 
+    GameStats* getStats() {return stats;}
     /**
      * @brief makeCueBallAvailable - Gives the player the CueBall so they can
      * interact with and continue playing
@@ -71,10 +76,11 @@ private:
      */
     ChangeInPoolGame collide(Ball *b1, Ball *b2);
 
-
+    GameStats * stats;
     Table * m_table;
     std::vector<Ball*> m_balls;
     bool cueBall;
+    QMediaPlayer * ballSounds;
 };
 
 #endif // POOLGAME_H

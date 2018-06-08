@@ -9,6 +9,7 @@ PoolGame::~PoolGame()
         delete b;
     }
     delete m_table;
+    delete stats;
 }
 
 void PoolGame::simulateTimeStep(float timeStep)
@@ -24,6 +25,7 @@ void PoolGame::simulateTimeStep(float timeStep)
                 totalChange.m_ballsToRemove.clear();
                 b->setPosition(QVector2D( -200 ,- 200)); //place outside view
                 b->setVelocity(QVector2D(0,0));
+                stats->updateCueSinking();
                 cueBall = false;
                 return;
             }else{
@@ -37,13 +39,23 @@ void PoolGame::simulateTimeStep(float timeStep)
     //a collision between each possible pair of balls
     for(size_t i = 0; i < m_balls.size();++i)
     {
+        int counter = 0;
         for(size_t j = i+1;j < m_balls.size();++j)
         {
             if(m_balls[i]->collidesWith(m_balls[j]))
             {
+                //put it somewhere else otherwise it'll be unnacurate accuracy.
+                counter++;
                 totalChange = totalChange.merge(collide(m_balls[i],m_balls[j]));
             }
         }
+
+//        //Checks if the Cue ball has collided with any ball
+//        if(counter >=1 && m_balls[i]->colour() == Qt::white){
+//            accuracy.setX(accuracy.x() + 1); //Collided
+//        }else{
+//            accuracy.setY(accuracy.y() + 1); //No Collision
+//        }
     }
 
     for(Ball * e:totalChange.m_ballsToRemove)
@@ -112,7 +124,11 @@ ChangeInPoolGame PoolGame::collide(Ball *b1, Ball *b2)
         root = (-b - discriminant)/(2 * a);
     }
 
-
+    if(ballSounds->state() == QMediaPlayer::PlayingState){
+        ballSounds->setPosition(0);
+    }else if(ballSounds->state() == QMediaPlayer::StoppedState){
+        ballSounds->play();
+    }
     //The resulting changes in velocity for ball A and B
     ChangeInPoolGame changeFromB1 = b1->changeVelocity(mR * (vB - root) * collisionVector);
     ChangeInPoolGame changeFromB2 = b2->changeVelocity((root - vB) * collisionVector);

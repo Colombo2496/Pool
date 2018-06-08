@@ -13,6 +13,7 @@ Once they are complete/ready to run they will be merged with the master.
 
 Extension Branches: "Contains various branches"
 
+
 *100% COMPLETE* | resetCue Branch:
   - If cueBall enters one of the pockets, it is automatically placed on the
   table again for taking more shots.
@@ -23,6 +24,9 @@ Extension Branches: "Contains various branches"
     2. If it's not behind the line a popup will occur instructing user
     where to place(CLICK) the Cue Ball.
 *0% COMPLETE* | Statistics Branch:
+
+*100% COMPLETE* | Statistics Branch: 1.3.0
+
   - Press the 's' button to pop up a statistics window.
   - **Statistics WINDOW** includes:
     - Pocket statistics:
@@ -40,7 +44,13 @@ Extension Branches: "Contains various branches"
       1. Use pointers only (maybe sharedPointers?)
       2. Connect to the Dialog (using the m_game inside)
 
-
+*100% COMPLETE* | specialEffects Branch: (HAS NOW MERGED WITH STATISTICS BRANCH)
+  - Adds special effects to the game. It includes:
+    - Background Noise: Get transported to Billards in LYON FRANCE
+    - BallCollision: Banging noise when balls collide
+    - BallTableCollision: Edge noise when ball and table edge collides
+    - CueHit: Hit the cue with the Cue stick
+  - Press M to mute Background Music
 *********
 Requirements
 *********

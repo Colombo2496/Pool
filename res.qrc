@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/sounds">
+        <file>ambienceNoise.mp3</file>
+        <file>BallCollision.wav</file>
+        <file>CueballHit.wav</file>
+        <file>PoolShot.wav</file>
+        <file>tableBallCollision.wav</file>
+    </qresource>
+</RCC>

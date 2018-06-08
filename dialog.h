@@ -6,6 +6,8 @@
 #include <QPaintEvent>
 #include <QTimer>
 #include <QMouseEvent>
+#include <QKeyEvent>
+#include <QMediaPlayer>
 #include "poolgame.h"
 
 /**
@@ -51,18 +53,39 @@ public:
      * @param event
      */
     void mouseReleaseEvent(QMouseEvent *event);
+
+    /**
+     * @brief keyPressed just emits a keyPressed signal
+     * @param event
+     */
+    void keyPressEvent(QKeyEvent *event);
+
+    /**
+     * @brief keyReleaseEvent just emits a keyRelease signal
+     * @param event
+     */
+    void keyReleaseEvent(QKeyEvent *event);
 signals:
     void mousePressed(QMouseEvent * event);
     void mouseMoved(QMouseEvent * event);
     void mouseReleased(QMouseEvent * event);
     void placeCueBall(QSize tableDimensions);
+    void keyPressed(QKeyEvent * event);
+    void keyReleased(QKeyEvent * event);
 
 public slots:
     void runSimulationStep();
+    /**
+     * @brief playMusic - Play the background music or pause it
+     * @param stop if TRUE pause it else play it
+     */
+    void playMusic(bool stop);
 private:
     PoolGame * m_game;
     QTimer * m_framerateTimer;
     QTimer * m_timestepTimer;
+    QMediaPlayer * ambientNoise;
+    bool stopMusic;
 };
 
 #endif // DIALOG_H

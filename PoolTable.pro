@@ -4,7 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui \
+            multimedia
+>>>>>>> statistics
 CONFIG += console
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -29,7 +31,11 @@ SOURCES += main.cpp \
     changeinpoolgame.cpp \
     cueballdecorator.cpp \
     duplicationballdecorator.cpp \
-    statistics.cpp
+    statistics.cpp \
+    stage3factory.cpp \
+    gamestats.cpp \
+    stage3ball.cpp
+
 
 HEADERS  += dialog.h \
     poolgame.h \
@@ -50,5 +56,11 @@ HEADERS  += dialog.h \
     balldecorator.h \
     cueballdecorator.h \
     duplicationballdecorator.h \
-    statistics.h
+    statistics.h \
+    stage3factory.h \
+    gamestats.h \
+    stage3ball.h
+
+RESOURCES += \
+    res.qrc
 

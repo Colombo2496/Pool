@@ -10,6 +10,7 @@
 
 #include "stage1factory.h"
 #include "stage2factory.h"
+#include "stage3factory.h"
 #include "gamebuilder.h"
 #include "statistics.h"
 class Dialog;
@@ -44,7 +45,11 @@ PoolGame *Initializer::createPoolgame(const std::string &configFilePath, Dialog 
         return nullptr;
 
     AbstractFactory *factory;
-    if(config["stage2"].toBool())
+    if(config["stage3"].toBool())
+    {
+        factory = new Stage3Factory(parent);
+    }
+    else if(config["stage2"].toBool())
     {
         factory = new Stage2Factory(parent);
     }

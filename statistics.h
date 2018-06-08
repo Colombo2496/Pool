@@ -14,7 +14,7 @@ class Statistics : public QObject
 {
 public:
 
-    Statistics(Dialog *parent/*,PoolGame game,std::vector<unsigned int*> pocketStats*/);
+    Statistics(Dialog *parent);
 
 
     /* Getter Methods
@@ -23,14 +23,14 @@ public:
      * @brief getPocketStats
      * @return all the pocket Statistics
      */
-    vector<unsigned int*> const  getPocketStats() {return m_pocketStats;}
+    vector<unsigned int*>* const  getPocketStats() {return m_pocketStats;}
 
     /**
      * @brief getAccuracy - Calculates the accuracy based on
      * the values found in 'm_accuracy'<CUEBALLHIT, CUEBALLMISS>
      * @return accuracy with 2 decimal values
      */
-    float getAccuracy();
+    float const getAccuracy();
 
     /**
      * @brief statsToString - Makes all the stats into a string to be parsed through
@@ -42,6 +42,12 @@ public:
      * @brief setUpPointers - set up the pointers for the Stat variables
      */
     void setUpPointers(PoolGame* game);
+
+    /**
+     * @brief setUpPocketPointers - set up the pointers for the pocket stats
+     * @param pocketStats
+     */
+    void setUpPocketPointers(vector<unsigned int*>* pocketStats);
 
 public slots:
     void keyPressed(QKeyEvent * event);
@@ -56,8 +62,7 @@ private:
 
 
 
-    vector<unsigned int*> m_pocketStats;
-//    QVector2D* m_accuracy;
+    vector<unsigned int*>* m_pocketStats;
     GameStats * ballStats;
     QLabel m_popUp;
 };

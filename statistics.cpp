@@ -16,7 +16,7 @@ Statistics::Statistics(Dialog *parent):
 }
 
 
-float Statistics::getAccuracy()
+const float Statistics::getAccuracy()
 {
     // HITS OVER TOTAL
     float accuracy = 0.00;
@@ -55,7 +55,9 @@ void Statistics::keyPressed(QKeyEvent *event)
 
     if(event->key() == Qt::Key_S)
     {
-        m_popUp.setText(statsToString());
+        //Check if the pointers have been assigned or not
+        if(m_pocketStats == nullptr && ballStats != nullptr)
+            m_popUp.setText(statsToString());
         m_popUp.show();
     }
 }
@@ -81,4 +83,9 @@ void Statistics::setUpPopUp()
 void Statistics::setUpPointers(PoolGame * game)
 {
     this->ballStats = game->getStats();
+}
+
+void Statistics::setUpPocketPointers(vector<unsigned int *> *pocketStats)
+{
+    this->m_pocketStats = pocketStats;
 }

@@ -23,7 +23,7 @@ public:
      * @brief getCounter - the current amount of balls sunk.
      * @return counter
      */
-    int getCounter(){return this->counter;}
+    int getCounter() const{return this->counter;}
 
     /**
      * @brief updateCounter - Updated everytime a ball fell into the pocket
